@@ -1,28 +1,25 @@
 package edu.baylor.ecs.seer.similaritydetection.service;
 
 import it.zielke.moji.SocketClient;
-import it.zielke.moji.Stage;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
 @Service
 public class MossService {
 
-
-    public void getResutls() throws Exception{
+    public URL getResutls() throws Exception{
         // a list of students' source code files located in the prepared
         // directory.
-        Collection<File> files = FileUtils.listFiles(new File(
-                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/output"), new String[] { "java" }, true);
+        Collection<File> files = getFilesToBeCompared();
 
         // a list of base files that was given to the students for this
         // assignment.
-        Collection<File> baseFiles = FileUtils.listFiles(new File(
-                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/input"), new String[] { "java" }, true);
+        Collection<File> baseFiles = getBaseFiles();
 
         //get a new socket client to communicate with the Moss server
         //and set its parameters.
@@ -52,14 +49,18 @@ public class MossService {
         socketClient.sendQuery();
 
         //get URL with Moss results and do something with it
-        URL results = socketClient.getResultURL();
-        System.out.println("Results available at " + results.toString());
+        return socketClient.getResultURL();
 
-        //result took from the url
+    }
 
-        //parse
+    public Collection<File> getFilesToBeCompared(){
+        return FileUtils.listFiles(new File(
+                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/output"), new String[] { "java" }, true);
+    }
 
-
+    public Collection<File> getBaseFiles(){
+        return FileUtils.listFiles(new File(
+                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/input"), new String[] { "java" }, true);
     }
 
 }

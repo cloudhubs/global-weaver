@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/loader")
-public class MossController {
+@RequestMapping("/")
+public class SimilarityDetectionController {
 
     @Autowired
     private MossService mossService;
 
-    @RequestMapping(value = "/compare")
+    @RequestMapping(value = "/similarity-detection")
     @GetMapping
     public void compare() throws Exception{
         mossService.getResutls();
