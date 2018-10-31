@@ -17,7 +17,7 @@ public class HarvesterServiceImpl implements HarvesterService {
     @Override
     public HarvesterData getSecurityData() {
         String data = restTemplate.getForObject(
-                "http://localhost:18767/local-weaver/flowStructure",
+                "http://localhost:18767/local-weaver/security",
                 String.class);
         HarvesterData harvesterData = new HarvesterData();
         ArrayList<LocalWeaverResult> arrayListLocalWeaverResult = new ArrayList<>();
