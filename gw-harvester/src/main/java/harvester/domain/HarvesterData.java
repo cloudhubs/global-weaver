@@ -1,12 +1,14 @@
 package harvester.domain;
 
+import java.util.ArrayList;
+
 public class HarvesterData {
 
     private boolean status;
 
     private String message;
 
-    private String data;
+    private ArrayList<LocalWeaverResult> data;
 
     public HarvesterData() {
         //Default Constructor
@@ -28,5 +30,11 @@ public class HarvesterData {
         this.message = message;
     }
 
+    public ArrayList<LocalWeaverResult> getData() {
+        return data;
+    }
 
+    public void setData(ArrayList<LocalWeaverResult> data) {
+        this.data = data;
+    }
 }
