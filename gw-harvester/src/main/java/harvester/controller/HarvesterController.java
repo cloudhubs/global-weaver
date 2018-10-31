@@ -17,9 +17,9 @@ public class HarvesterController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/data", method = RequestMethod.GET)
-    public HarvesterData getData(){
-        System.out.println("[Harvester Service][Get all data. ");
+    @RequestMapping(path = "/security", method = RequestMethod.GET)
+    public HarvesterData getSecurity(){
+        System.out.println("[Harvester Service][Get security data. ");
         return harvesterService.getSecurityData();
     }
 
