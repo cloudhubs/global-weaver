@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class HarvesterData {
 
-    private boolean status;
+    private int status;
 
     private String message;
 
@@ -14,11 +14,11 @@ public class HarvesterData {
         //Default Constructor
     }
 
-    public boolean isStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 

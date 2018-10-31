@@ -1,9 +1,12 @@
 package harvester.service;
 
 import harvester.domain.HarvesterData;
+import harvester.domain.LocalWeaverResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
 
 @Service
 public class HarvesterServiceImpl implements HarvesterService {
@@ -13,11 +16,20 @@ public class HarvesterServiceImpl implements HarvesterService {
 
     @Override
     public HarvesterData getSecurityData() {
-        return new HarvesterData();
-//        restTemplate.getForObject(
-//                "http://ts-contacts-service:12347/contacts/findAll",
-//                HarvesterData.class);
-
+        String data = restTemplate.getForObject(
+                "http://localhost:18767/local-weaver/security",
+                String.class);
+        HarvesterData harvesterData = new HarvesterData();
+        ArrayList<LocalWeaverResult> arrayListLocalWeaverResult = new ArrayList<>();
+        LocalWeaverResult localWeaverResult = new LocalWeaverResult();
+        localWeaverResult.setData(data);
+        localWeaverResult.setId(1);
+        localWeaverResult.setModuleId(1);
+        arrayListLocalWeaverResult.add(localWeaverResult);
+        harvesterData.setData(arrayListLocalWeaverResult);
+        harvesterData.setStatus(200);
+        harvesterData.setMessage("OK");
+        return harvesterData;
     }
 
 
