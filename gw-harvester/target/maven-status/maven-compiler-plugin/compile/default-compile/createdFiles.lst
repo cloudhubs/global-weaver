@@ -1,0 +1,5 @@
+harvester/service/HarvesterServiceImpl.class
+harvester/domain/HarvesterData.class
+harvester/HarvesterApplication.class
+harvester/controller/HarvesterController.class
+harvester/service/HarvesterService.class

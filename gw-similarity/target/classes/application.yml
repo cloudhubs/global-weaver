@@ -1,0 +1,12 @@
+server:
+  port: 7003
+
+spring:
+  application:
+    name: gw-similarity
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      percentage: 1.0
+
