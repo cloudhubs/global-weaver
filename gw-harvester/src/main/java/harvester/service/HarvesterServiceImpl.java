@@ -16,6 +16,9 @@ public class HarvesterServiceImpl implements HarvesterService {
 
     @Override
     public HarvesterData getSecurityData() {
+
+        //Try all ports from 5000 - 99000, if on port REST /local-weaver/handshake returns "OK-local"
+        //fetch data
         String data = restTemplate.getForObject(
                 "http://localhost:18767/local-weaver/security",
                 String.class);
