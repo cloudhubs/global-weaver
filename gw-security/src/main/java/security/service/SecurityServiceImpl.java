@@ -19,14 +19,16 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String getSecurityData() {
-        HarvesterData data;
+        ArrayList<HarvesterData> data;
         StringBuilder output = new StringBuilder();
 
         data = restTemplate.getForObject(
-                "http://localhost:7002/security",
-                HarvesterData.class);
+                "http://localhost:7003/security",
+                ArrayList.class);
 
-        ArrayList<LocalWeaverResult> results = data.getData();
+        HarvesterData hd = data.get(0);
+
+        ArrayList<LocalWeaverResult> results = hd.getData();
 
         /*/ FOR TESTING: Create example role tree //
 
@@ -53,10 +55,10 @@ public class SecurityServiceImpl implements SecurityService {
 
                 output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n");
 
-                //String json = entry.getData();
+                String json = entry.getData();
 
                 // Testing only
-                String json = "{\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethodBad1()\":[\"User\",\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\":[\"User\",\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod2()\":[\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\":[\"Admin\"]} @{\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethodBad1()\":[\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\"],\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\":[],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod2()\":[\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\":[]}";
+                //String json = "{\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethodBad1()\":[\"User\",\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\":[\"User\",\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod2()\":[\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\":[\"Admin\"]} @{\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethodBad1()\":[\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\"],\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\":[],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod2()\":[\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\":[]}";
 
                 String[] jsons = json.split("@");
 
