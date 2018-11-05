@@ -28,6 +28,10 @@ public class RoleNode {
         List<RoleNode> matches = new ArrayList<>();
         this.search(role, matches);
         if (matches.size() > 0) {
+            RoleNode node = matches.get(0);
+            matches.clear();
+            this.search(beneath, matches);
+            matches.get(0).children.add(node);
             return;
         }
         this.search(beneath, matches);

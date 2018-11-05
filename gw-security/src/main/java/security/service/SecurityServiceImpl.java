@@ -18,8 +18,9 @@ public class SecurityServiceImpl implements SecurityService {
     private Map<String, List<String>> nodes = null;
 
     @Override
-    public void getSecurityData() {
+    public String getSecurityData() {
         HarvesterData data;
+        StringBuilder output = new StringBuilder();
 
         data = restTemplate.getForObject(
                 "http://localhost:7002/security",
@@ -27,16 +28,30 @@ public class SecurityServiceImpl implements SecurityService {
 
         ArrayList<LocalWeaverResult> results = data.getData();
 
-        // FOR TESTING: Create example role tree
+        /*/ FOR TESTING: Create example role tree //
+
         RoleNode roleTree = new RoleNode("Admin");
         roleTree.insert("User", "Admin");
 
-        // END TESTING
+        // END TESTING /*/
+
+        //*/ FOR TRAIN-TICKET TESTING: Create example role tree //
+
+        RoleNode roleTree = new RoleNode("SuperAdmin");
+        roleTree.insert("Admin", "SuperAdmin");
+        roleTree.insert("Reviewer", "SuperAdmin");
+        roleTree.insert("User", "Admin");
+        roleTree.insert("Guest", "User");
+        roleTree.insert("Moderator", "Admin");
+        roleTree.insert("Moderator", "Reviewer");
+        roleTree.insert("Reviewer", "Moderator");
+
+        // END TESTING /*/
 
         for ( LocalWeaverResult entry : results ) {
             //if (entry.getType() == LocalWeaverResultType.SECURITY) {
 
-                System.out.println("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":");
+                output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n");
 
                 //String json = entry.getData();
 
@@ -74,27 +89,34 @@ public class SecurityServiceImpl implements SecurityService {
                 }
 
                 for (List<String> e : edgeSet) {
-                    validateEdge(e.get(0), e.get(1), roleTree);
+                    output.append(validateEdge(e.get(0), e.get(1), roleTree));
                 }
-                System.out.println("Done processing!\n");
+                output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n");
             //}
         }
+
+        return output.toString();
     }
 
-    private void validateEdge(String start, String end, RoleNode roleTree) {
+    private String validateEdge(String start, String end, RoleNode roleTree) {
+        StringBuilder output = new StringBuilder();
         for ( String srole : roles.get(start) ) {
             for ( String erole : roles.get(end) ) {
-                RoleNode s = roleTree.subTree(srole);
-                RoleNode e = roleTree.subTree(erole);
-                boolean inS = s.childContains(erole);
-                boolean inE = e.childContains(srole);
                 if (roleTree.subTree(erole).childContains(srole)
                     && !roleTree.subTree(srole).childContains(erole)) {
-                    System.out.printf("Error! Edge from %s to %s is invalid!\n", start, end);
-                    System.out.printf("This is caused by role mismatch between %s and %s.\n", srole, erole);
+                    output.append("Error! Edge from ")
+                            .append(start)
+                            .append(" to ")
+                            .append(end)
+                            .append(" is invalid!\nThis is caused by role mismatch between ")
+                            .append(srole)
+                            .append(" and ")
+                            .append(erole)
+                            .append(".\n");
                 }
             }
         }
+        return output.toString();
     }
 
 }
