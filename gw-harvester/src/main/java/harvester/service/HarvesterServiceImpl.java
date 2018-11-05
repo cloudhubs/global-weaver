@@ -1,5 +1,6 @@
 package harvester.service;
 
+import harvester.config.YAMLConfig;
 import harvester.domain.HarvesterData;
 import harvester.domain.LocalWeaverResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import java.util.ArrayList;
 
 @Service
 public class HarvesterServiceImpl implements HarvesterService {
+
+    @Autowired
+    private YAMLConfig yamlConfig;
 
     @Autowired
     private RestTemplate restTemplate;

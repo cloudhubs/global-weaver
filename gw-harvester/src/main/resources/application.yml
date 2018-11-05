@@ -1,7 +1,53 @@
+#server:
+#  port: 7002
+#
+#spring:
+#  application:
+#    name: gw-harvester
+#  zipkin:
+#    baseUrl: http://localhost:9411/
+#  sleuth:
+#    sampler:
+#      percentage: 1.0
+#
+#config:
+#  ip: http://localhost
+#
+#name: dev-Harvester
+#environment: dev
+#
+#servers:
+#  - 18767
+#  - 16112
+#
+#
+#---
+#server:
+#  port: 7003
+#
+#spring:
+#  application:
+#    name: gw-harvester
+#  zipkin:
+#    baseUrl: http://localhost:9411/
+#  sleuth:
+#    sampler:
+#      percentage: 1.0
+#
+#config:
+#  ip: http://localhost
+#
+#name: prod-Harvester
+#environment: prod
+#
+#servers:
+#- 18767
+#- 16112
+
 server:
   port: 7002
-
 spring:
+  profiles: test
   application:
     name: gw-harvester
   zipkin:
@@ -9,4 +55,26 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
+#name: test-YAML
+environment: test
+servers:
+- 18767
+- 16112
 
+---
+server:
+  port: 7003
+spring:
+  profiles: prod
+  application:
+    name: gw-harvester
+  zipkin:
+    baseUrl: http://localhost:9411/
+  sleuth:
+    sampler:
+      percentage: 1.0
+#name: prod-YAML
+environment: production
+servers:
+- 18767
+- 16112
