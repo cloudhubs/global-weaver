@@ -1,5 +1,9 @@
 package harvester;
 
+import harvester.config.Spring;
+import harvester.config.YAMLConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,7 +17,13 @@ import org.springframework.web.client.RestTemplate;
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
 @IntegrationComponentScan
-public class HarvesterApplication {
+public class HarvesterApplication implements CommandLineRunner {
+
+    @Autowired
+    private YAMLConfig myConfig;
+
+    @Autowired
+    private Spring spring;
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(HarvesterApplication.class, args);
@@ -22,5 +32,13 @@ public class HarvesterApplication {
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
+    }
+
+    @Override
+    public void run(String... strings) throws Exception {
+        System.out.println("using environment: " + myConfig.getEnvironment());
+        System.out.println("name: " + myConfig.getName());
+        System.out.println("servers: " + myConfig.getServers());
+        System.out.println(spring.getApplication().getName());
     }
 }
