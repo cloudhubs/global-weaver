@@ -1,6 +1,9 @@
 package security.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import security.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,10 +25,14 @@ public class SecurityServiceImpl implements SecurityService {
         ArrayList<HarvesterData> data;
         StringBuilder output = new StringBuilder();
 
-        data = restTemplate.getForObject(
+        ResponseEntity<ArrayList<HarvesterData>> response = restTemplate.exchange(
                 "http://localhost:7003/security",
-                ArrayList.class);
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<ArrayList<HarvesterData>>(){});
+        data = response.getBody();
 
+        // Testing only. Eventually will loop over all response data
         HarvesterData hd = data.get(0);
 
         ArrayList<LocalWeaverResult> results = hd.getData();
@@ -78,20 +85,34 @@ public class SecurityServiceImpl implements SecurityService {
                     while (!stack.empty()) {
                         String cur = stack.pop();
                         visited.add(node);
-                        for (String adj : nodes.get(cur)) {
-                            if (!visited.contains(adj)) {
-                                stack.push(adj);
+                        try {
+                            for (String adj : nodes.get(cur)) {
+                                if (!visited.contains(adj)) {
+                                    stack.push(adj);
+                                }
+                                List<String> edge = new ArrayList<>();
+                                edge.add(cur);
+                                edge.add(adj);
+                                edgeSet.add(edge);
                             }
-                            List<String> edge = new ArrayList<>();
-                            edge.add(cur);
-                            edge.add(adj);
-                            edgeSet.add(edge);
+                        } catch (Exception ex) {
+                            System.out.println(ex.toString());
                         }
                     }
                 }
 
                 for (List<String> e : edgeSet) {
                     output.append(validateEdge(e.get(0), e.get(1), roleTree));
+                }
+
+                for ( String node : roles.keySet() ) {
+                    if (roles.get(node).size() > 0) {
+                        output.append("Node ")
+                                .append(node)
+                                .append(" has ")
+                                .append(roles.get(node).size())
+                                .append(" roles associated with it.\n");
+                    }
                 }
                 output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n");
             //}
