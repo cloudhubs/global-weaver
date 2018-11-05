@@ -1,5 +1,6 @@
 package security.domain;
 
+import javax.management.relation.Role;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,35 @@ public class RoleNode {
 
     public void insert(String role, String beneath) {
         List<RoleNode> matches = new ArrayList<>();
+        this.search(role, matches);
+        if (matches.size() > 0) {
+            return;
+        }
+        this.search(beneath, matches);
+        matches.get(0).children.add(new RoleNode(role));
+    }
 
+    public RoleNode subTree(String role) {
+        List<RoleNode> matches = new ArrayList<>();
+        this.search(role, matches);
+        if (matches.size() > 0) {
+            return matches.get(0);
+        }
+        return null;
+    }
+
+    public boolean contains(String role) {
+        List<RoleNode> matches = new ArrayList<>();
+        this.search(role, matches);
+        return !matches.isEmpty();
+    }
+
+    public boolean childContains(String role) {
+        List<RoleNode> matches = new ArrayList<>();
+        for ( RoleNode child : this.children ) {
+            this.search(role, matches);
+        }
+        return !matches.isEmpty();
     }
 
 }
