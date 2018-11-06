@@ -7,4 +7,7 @@ public class CommonJoinPointConfig {
     @Pointcut("execution(* harvester.service.HarvesterService.getData(..))")
     public void harvesterServiceGetData(){}
 
+    @Pointcut("execution(* harvester.controller.HarvesterController.*(..))")
+    public void harvesterControllerMethods(){}
+
 }

@@ -12,25 +12,25 @@ import java.util.ArrayList;
 public class HarvesterController {
 
     @Autowired
-    HarvesterService harvesterService;
+    private HarvesterService harvesterService;
 
-    @RequestMapping(path = "/welcome", method = RequestMethod.GET)
+    @RequestMapping(path = "/handshake", method = RequestMethod.GET)
     public String home() {
-        return "Welcome to [ Harvester Service ] !";
+        return "OK - handshake";
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security", method = RequestMethod.GET)
     public HarvesterData getSecurity(){
-        System.out.println("[Harvester Service][Get security data. ");
-        return harvesterService.getData(LocalWeaverResultType.SECURITY.getResultType());
+        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.SECURITY.getResultType());
+        return harvesterData;
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/dataModel", method = RequestMethod.GET)
     public HarvesterData getDataModel(){
-        System.out.println("[Harvester Service][Get data model data. ");
-        return harvesterService.getData(LocalWeaverResultType.DATA_MODEL.getResultType());
+        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.DATA_MODEL.getResultType());
+        return harvesterData;
     }
 
 
