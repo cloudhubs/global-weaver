@@ -49,13 +49,19 @@ public class SimilarityService {
      * @return
      */
     private ArrayList<LocalWeaverResult> getLocalWeaversResults(){
-        ResponseEntity<HarvesterData> response = restTemplate.exchange(
-                "http://localhost:7003/security",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<HarvesterData>(){});
-        HarvesterData data = response.getBody();
-        return data.getData();
+//        ResponseEntity<HarvesterData> response = restTemplate.exchange(
+//                "http://localhost:7003/security",
+//                HttpMethod.GET,
+//                null,
+//                new ParameterizedTypeReference<HarvesterData>(){});
+
+        HarvesterData response = restTemplate.getForObject(
+                    "http://localhost:7003/security",
+                    HarvesterData.class);
+
+
+        //HarvesterData data = response.getBody();
+        return response.getData();
     }
 
     /**
