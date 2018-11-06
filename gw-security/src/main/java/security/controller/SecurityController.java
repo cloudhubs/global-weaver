@@ -17,9 +17,9 @@ public class SecurityController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security/{id}", method = RequestMethod.GET)
-    public void getAllContacts(@PathVariable String id){
+    public String getAllContacts(@PathVariable String id){
         System.out.println("[Admin Basic Info Service][Find All Contacts by admin: " + id);
-        securityService.getSecurityData();
+        return securityService.getSecurityData();
     }
 
 }
