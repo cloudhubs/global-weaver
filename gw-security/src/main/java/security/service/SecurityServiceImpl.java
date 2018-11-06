@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import security.config.YAMLConfig;
 import security.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,18 +16,21 @@ import java.util.*;
 public class SecurityServiceImpl implements SecurityService {
 
     @Autowired
+    YAMLConfig config;
+
+    @Autowired
     private RestTemplate restTemplate;
 
     private Map<String, List<String>> roles = null;
     private Map<String, List<String>> nodes = null;
 
     @Override
-    public String getSecurityData() {
+    public String getSecurityData(String roleDef) {
         ArrayList<HarvesterData> data;
         StringBuilder output = new StringBuilder();
 
         ResponseEntity<ArrayList<HarvesterData>> response = restTemplate.exchange(
-                "http://localhost:7003/security",
+                "http://localhost:" + config.getServers().get(0) + "/security",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<ArrayList<HarvesterData>>(){});
@@ -37,35 +41,14 @@ public class SecurityServiceImpl implements SecurityService {
 
         ArrayList<LocalWeaverResult> results = hd.getData();
 
-        /*/ FOR TESTING: Create example role tree //
-
-        RoleNode roleTree = new RoleNode("Admin");
-        roleTree.insert("User", "Admin");
-
-        // END TESTING /*/
-
-        //*/ FOR TRAIN-TICKET TESTING: Create example role tree //
-
-        RoleNode roleTree = new RoleNode("SuperAdmin");
-        roleTree.insert("Admin", "SuperAdmin");
-        roleTree.insert("Reviewer", "SuperAdmin");
-        roleTree.insert("User", "Admin");
-        roleTree.insert("Guest", "User");
-        roleTree.insert("Moderator", "Admin");
-        roleTree.insert("Moderator", "Reviewer");
-        roleTree.insert("Reviewer", "Moderator");
-
-        // END TESTING /*/
+        RoleNode roleTree = createRoleTree(roleDef);
 
         for ( LocalWeaverResult entry : results ) {
-            //if (entry.getType() == LocalWeaverResultType.SECURITY) {
+            if (entry.getType() == LocalWeaverResultType.SECURITY) {
 
                 output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n");
 
                 String json = entry.getData();
-
-                // Testing only
-                //String json = "{\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethodBad1()\":[\"User\",\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\":[\"User\",\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod2()\":[\"Admin\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\":[\"Admin\"]} @{\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethodBad1()\":[\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\"],\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\":[],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod2()\":[\"seer.ecs.baylor.edu.securitytestsimple.UserAccessible.UserMethod1()\"],\"seer.ecs.baylor.edu.securitytestsimple.AdminAccessible.AdminMethod1()\":[]}";
 
                 String[] jsons = json.split("@");
 
@@ -105,17 +88,8 @@ public class SecurityServiceImpl implements SecurityService {
                     output.append(validateEdge(e.get(0), e.get(1), roleTree));
                 }
 
-                for ( String node : roles.keySet() ) {
-                    if (roles.get(node).size() > 0) {
-                        output.append("Node ")
-                                .append(node)
-                                .append(" has ")
-                                .append(roles.get(node).size())
-                                .append(" roles associated with it.\n");
-                    }
-                }
                 output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n");
-            //}
+            }
         }
 
         return output.toString();
@@ -124,22 +98,66 @@ public class SecurityServiceImpl implements SecurityService {
     private String validateEdge(String start, String end, RoleNode roleTree) {
         StringBuilder output = new StringBuilder();
         for ( String srole : roles.get(start) ) {
-            for ( String erole : roles.get(end) ) {
-                if (roleTree.subTree(erole).childContains(srole)
-                    && !roleTree.subTree(srole).childContains(erole)) {
-                    output.append("Error! Edge from ")
-                            .append(start)
-                            .append(" to ")
-                            .append(end)
-                            .append(" is invalid!\nThis is caused by role mismatch between ")
-                            .append(srole)
-                            .append(" and ")
-                            .append(erole)
-                            .append(".\n");
+            try {
+                for (String erole : roles.get(end)) {
+                    if (roleTree.subTree(erole).childContains(srole)
+                            && !roleTree.subTree(srole).childContains(erole)) {
+                        output.append("Error! Edge from ")
+                                .append(start)
+                                .append(" to ")
+                                .append(end)
+                                .append(" is invalid!\nThis is caused by role mismatch between ")
+                                .append(srole)
+                                .append(" and ")
+                                .append(erole)
+                                .append(".\n");
+                    }
                 }
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
             }
         }
         return output.toString();
+    }
+
+    private RoleNode createRoleTree(String roleDef) {
+        String[] lines = roleDef.split("\n");
+        if (lines[0].contains("->")) {
+            System.out.println("ERROR! Line 0 should not be an edge!");
+            return null;
+        }
+
+        RoleNode roleTree = new RoleNode(lines[0].replaceAll(" ", ""));
+
+        for ( int i = 1; i < lines.length; i++ ) {
+            String line = lines[i].replaceAll(" ", "");
+            String[] split = line.split("->");
+            if (split.length != 2) {
+                System.out.println("ERROR! Bad input line on line " + i + "!");
+                return null;
+            }
+            if (split[0].endsWith("<")) {
+                String first = split[0].substring(0, split[0].length() - 1);
+                if (!roleTree.insert(split[1], first)) {
+                    System.out.println("ERROR! Bad input on line " + i + "!\n" +
+                            "Left hand side of edge must appear earlier as right hand side!");
+                    return null;
+                }
+                if (!roleTree.insert(first, split[1])) {
+                    System.out.println("ERROR! Bad input on line " + i + "!\n" +
+                            "Left hand side of edge must appear earlier as right hand side!");
+                    return null;
+                }
+            } else {
+                if (!roleTree.insert(split[1], split[0])) {
+                    System.out.println("ERROR! Bad input on line " + i + "!\n" +
+                            "Left hand side of edge must appear earlier as right hand side!");
+                    return null;
+                }
+            }
+        }
+
+        return roleTree;
     }
 
 }

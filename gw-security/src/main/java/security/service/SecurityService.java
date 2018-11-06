@@ -2,6 +2,6 @@ package security.service;
 
 public interface SecurityService {
 
-    String getSecurityData();
+    String getSecurityData(String roleDef);
 
 }

@@ -19,7 +19,14 @@ public class SecurityController {
     @RequestMapping(path = "/security/{id}", method = RequestMethod.GET)
     public String getAllContacts(@PathVariable String id){
         System.out.println("[Admin Basic Info Service][Find All Contacts by admin: " + id);
-        return securityService.getSecurityData();
+        String roleDefTest = "S  uperAd min   \n" +
+                "Super   Admin->Admin\n" +
+                "SuperAdmin->Revi ewer\n" +
+                "Admin->  User\n" +
+                "User->Guest\n" +
+                "Admin ->Moderator\n" +
+                "Moderator<->Reviewer";
+        return securityService.getSecurityData(roleDefTest);
     }
 
 }
