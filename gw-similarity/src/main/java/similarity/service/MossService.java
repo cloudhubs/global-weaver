@@ -12,7 +12,12 @@ import java.util.Collection;
 @Service
 public class MossService {
 
-    public URL getResutls() throws Exception{
+    /**
+     * Sends content of output directory to MOSS server
+     * @return
+     * @throws Exception
+     */
+    public URL getResults() throws Exception{
         // a list of students' source code files located in the prepared
         // directory.
         Collection<File> files = getFilesToBeCompared();
