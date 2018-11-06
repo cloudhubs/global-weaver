@@ -1,7 +1,7 @@
 server:
   port: 7001
-
 spring:
+  profiles: prod
   application:
     name: gw-security
   zipkin:
@@ -9,4 +9,6 @@ spring:
   sleuth:
     sampler:
       percentage: 1.0
-
+environment: production
+servers:
+- 7003
