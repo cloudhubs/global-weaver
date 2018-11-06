@@ -54,18 +54,22 @@ public class MossService {
         socketClient.sendQuery();
 
         //get URL with Moss results and do something with it
-        return socketClient.getResultURL();
+        URL url = socketClient.getResultURL();
+
+        System.out.println(url);
+
+        return url;
 
     }
 
     public Collection<File> getFilesToBeCompared(){
         return FileUtils.listFiles(new File(
-                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/output"), new String[] { "java" }, true);
+                "/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/output"), new String[] { "java" }, true);
     }
 
     public Collection<File> getBaseFiles(){
         return FileUtils.listFiles(new File(
-                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/input"), new String[] { "java" }, true);
+                "/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/input"), new String[] { "java" }, true);
     }
 
 }
