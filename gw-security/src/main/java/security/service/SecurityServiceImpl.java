@@ -131,9 +131,9 @@ public class SecurityServiceImpl implements SecurityService {
                             .append(start)
                             .append(" to ")
                             .append(end)
+                            .append(" and ")
                             .append(" is invalid!\nThis is caused by role mismatch between ")
                             .append(srole)
-                            .append(" and ")
                             .append(erole)
                             .append(".\n");
                 }

@@ -9,6 +9,9 @@ import similarity.service.SimilarityService;
 
 import java.net.URL;
 
+/**
+ *
+ */
 @RestController
 @RequestMapping("/")
 public class SimilarityDetectionController {
@@ -19,15 +22,23 @@ public class SimilarityDetectionController {
     @Autowired
     private MossService mossService;
 
+    /**
+     * REST API for deriving similarities in modules
+     */
     @RequestMapping(value = "/similarity-detection")
     @GetMapping
     public void getSimilaritiesInWeavers() {
         similarityService.getSimilaritiesInWeavers();
     }
 
+    /**
+     * Calling MOSS validation service on current content in output directory
+     * @return
+     * @throws Exception
+     */
     @RequestMapping(value = "/moss")
     @GetMapping
-    public URL callMoss() throws Exception {
+    public URL callMossService() throws Exception {
         return mossService.getResults();
     }
 
