@@ -21,14 +21,14 @@ public class HarvesterController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security", method = RequestMethod.GET)
-    public ArrayList<HarvesterData> getSecurity(){
+    public HarvesterData getSecurity(){
         System.out.println("[Harvester Service][Get security data. ");
         return harvesterService.getData(LocalWeaverResultType.SECURITY.getResultType());
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/dataModel", method = RequestMethod.GET)
-    public ArrayList<HarvesterData> getDataModel(){
+    public HarvesterData getDataModel(){
         System.out.println("[Harvester Service][Get data model data. ");
         return harvesterService.getData(LocalWeaverResultType.DATA_MODEL.getResultType());
     }
