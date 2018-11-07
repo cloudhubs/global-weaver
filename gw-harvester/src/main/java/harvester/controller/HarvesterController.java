@@ -33,5 +33,17 @@ public class HarvesterController {
         return harvesterData;
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/flowStructure", method = RequestMethod.GET)
+    public HarvesterData getFlowStructure(){
+        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.FLOW_STRUCTURE.getResultType());
+        return harvesterData;
+    }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/byteFlowStructure", method = RequestMethod.GET)
+    public HarvesterData getByteFlowStructure(){
+        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.BYTE_CODE_FLOW_STRUCTURE.getResultType());
+        return harvesterData;
+    }
 }

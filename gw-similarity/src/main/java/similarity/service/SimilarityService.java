@@ -9,10 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import similarity.domain.HarvesterData;
 import similarity.domain.LocalWeaverResult;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +53,7 @@ public class SimilarityService {
 //                new ParameterizedTypeReference<HarvesterData>(){});
 
         HarvesterData response = restTemplate.getForObject(
-                    "http://localhost:7003/security",
+                    "http://localhost:7003/flowStructure",
                     HarvesterData.class);
 
 
@@ -70,16 +67,30 @@ public class SimilarityService {
      */
     private void createOutputFiles(ArrayList<LocalWeaverResult> localWeaverGraphs){
         for (int i = 0; i < localWeaverGraphs.size(); i++){
-            File file = new File("/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/output/"+"module"+i+"/Similarity"+i+".java");
-            file.getParentFile().mkdirs();
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-                writer.write(localWeaverGraphs.get(i).getData());
-                writer.close();
+//            File file = new File("/Users/svacina/Dev/centralized-prespective/global-weaver/similarity-detection/output/module"+i+"/Similarity"+i+".java");
+//            file.getParentFile().mkdirs();
+//            try {
+//                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+//                writer.write(localWeaverGraphs.get(i).getData());
+//                writer.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/output/module"+i+"/Similarity"+i+".java"), "utf-8"))) {
+                String data = localWeaverGraphs.get(i).getData();
+                String dataEscaped = data.replaceAll("],\\[", "],\n[");
+                writer.write(dataEscaped);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
     }
 
     /**
