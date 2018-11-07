@@ -48,15 +48,15 @@ public class SecurityServiceImpl implements SecurityService {
         return output.toString();
     }
 
-    private String processLocalWeaverResult(RoleNode roleTree, LocalWeaverResult entry) throws Exception {
-        if (entry.getType() == LocalWeaverResultType.SECURITY) {
+    public String processLocalWeaverResult(RoleNode roleTree, LocalWeaverResult entry) throws Exception {
+        if (entry.getType() != LocalWeaverResultType.SECURITY) {
             return "";
         }
 
         StringBuilder output = new StringBuilder();
 
         // MFD -- move to logging aspect
-        output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n"); //ToDo: this should be logged?
+        //output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n"); //ToDo: this should be logged?
 
         String json = entry.getData();
 
@@ -72,7 +72,7 @@ public class SecurityServiceImpl implements SecurityService {
         }
 
         // MFD -- move to logging aspect
-        output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n"); //ToDo: this should be logged?
+        //output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n"); //ToDo: this should be logged?
 
         return output.toString();
     }

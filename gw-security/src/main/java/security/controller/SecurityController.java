@@ -17,7 +17,7 @@ public class SecurityController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security/{id}", method = RequestMethod.GET)
-    public String getAllContacts(@PathVariable String id){
+    public String getAllContacts(@PathVariable String id) throws Exception {
         System.out.println("[Admin Basic Info Service][Find All Contacts by admin: " + id);
         String roleDefTest = "S  uperAd min   \n" +
                 "Super   Admin->Admin\n" +
