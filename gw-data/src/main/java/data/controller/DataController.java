@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/data")
 public class DataController {
 
     @Autowired
@@ -16,10 +17,17 @@ public class DataController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/data", method = RequestMethod.GET)
-    public String getAllContacts(){
+    @RequestMapping(path = "/inconsistencies", method = RequestMethod.GET)
+    public String findInconsistencies(){
         System.out.println("[Data Service][Find entity model inconsistencies]");
-        return dataService.processModelData();
+        return dataService.processModelDataInconsistencies();
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/validation", method = RequestMethod.GET)
+    public String findValidationPoints(){
+        System.out.println("[Data Service][Find entity validation points]");
+        return dataService.processModelDataValidation();
     }
 
 }
