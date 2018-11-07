@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+//ToDo: class description, method description
 public class RoleNode {
 
     private String role;

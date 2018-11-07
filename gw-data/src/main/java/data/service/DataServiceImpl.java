@@ -16,7 +16,7 @@ public class DataServiceImpl implements DataService {
 
     @Autowired
     private RestTemplate restTemplate;
-
+    //ToDo: ip, port, interface to config
     @Override
     public HarvesterData getModelData() {
         return restTemplate.getForObject(
@@ -24,7 +24,7 @@ public class DataServiceImpl implements DataService {
                 HarvesterData.class);
 
     }
-
+    //ToDo: add comments also to those nested for loops
     @Override
     public String processModelData() {
         String ret = "";
@@ -73,6 +73,7 @@ public class DataServiceImpl implements DataService {
         return ret;
     }
 
+    //ToDo: comment
     private List<EntityModel> aggregateModelData(List<LocalWeaverResult> data){
         List<EntityModel> models = new ArrayList<>();
         for(LocalWeaverResult result : data){

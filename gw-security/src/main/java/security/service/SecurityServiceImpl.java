@@ -24,6 +24,7 @@ public class SecurityServiceImpl implements SecurityService {
     private Map<String, List<String>> roles = null;
     private Map<String, List<String>> nodes = null;
 
+    //ToDo: description, too long method,
     @Override
     public String getSecurityData(String roleDef) {
         HarvesterData data;
@@ -36,7 +37,7 @@ public class SecurityServiceImpl implements SecurityService {
         //        new ParameterizedTypeReference<HarvesterData>(){});
         //data = response.getBody();
 
-        data = restTemplate.getForObject("http://localhost:" + config.getServers().get(0) + "/security",
+        data = restTemplate.getForObject("http://localhost:" + config.getServers().get(0) + "/security", //ToDo: ip, interface to config
                 HarvesterData.class);
 
         ArrayList<LocalWeaverResult> results = data.getData();
@@ -46,7 +47,7 @@ public class SecurityServiceImpl implements SecurityService {
         for ( LocalWeaverResult entry : results ) {
             if (entry.getType() == LocalWeaverResultType.SECURITY) {
 
-                output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n");
+                output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n"); //ToDo: this should be logged?
 
                 String json = entry.getData();
 
@@ -88,13 +89,13 @@ public class SecurityServiceImpl implements SecurityService {
                     output.append(validateEdge(e.get(0), e.get(1), roleTree));
                 }
 
-                output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n");
+                output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n"); //ToDo: this should be logged?
             }
         }
 
         return output.toString();
     }
-
+    //ToDo: when database ready, modify to persist to DB
     private String validateEdge(String start, String end, RoleNode roleTree) {
         StringBuilder output = new StringBuilder();
         for ( String srole : roles.get(start) ) {
@@ -120,6 +121,7 @@ public class SecurityServiceImpl implements SecurityService {
         return output.toString();
     }
 
+    //ToDo: when database ready, modify to persist to DB
     private RoleNode createRoleTree(String roleDef) {
         String[] lines = roleDef.split("\n");
         if (lines[0].contains("->")) {

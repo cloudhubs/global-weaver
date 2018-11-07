@@ -3,6 +3,7 @@ package data.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+//Todo: Describe this model
 public class InstanceVariableModel {
 
     private String variableName;
