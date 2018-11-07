@@ -26,96 +26,97 @@ public class SecurityServiceImpl implements SecurityService {
 
     //ToDo: description, too long method,
     @Override
-    public String getSecurityData(String roleDef) {
+    public String getSecurityData(String roleDef) throws Exception {
         HarvesterData data;
         StringBuilder output = new StringBuilder();
 
-        //ResponseEntity<HarvesterData> response = restTemplate.exchange(
-        //        "http://localhost:" + config.getServers().get(0) + "/security",
-        //        HttpMethod.GET,
-        //        null,
-        //        new ParameterizedTypeReference<HarvesterData>(){});
-        //data = response.getBody();
-
-        data = restTemplate.getForObject("http://localhost:" + config.getServers().get(0) + "/security", //ToDo: ip, interface to config
-                HarvesterData.class);
+        ResponseEntity<HarvesterData> response = restTemplate.exchange(
+                "http://localhost:" + config.getServers().get(0) + "/security",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<HarvesterData>(){});
+        data = response.getBody();
 
         ArrayList<LocalWeaverResult> results = data.getData();
 
         RoleNode roleTree = createRoleTree(roleDef);
 
         for ( LocalWeaverResult entry : results ) {
-            if (entry.getType() == LocalWeaverResultType.SECURITY) {
-
-                output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n"); //ToDo: this should be logged?
-
-                String json = entry.getData();
-
-                String[] jsons = json.split("@");
-
-                try {
-                    roles = new ObjectMapper().readValue(jsons[0], Map.class);
-                    nodes = new ObjectMapper().readValue(jsons[1], Map.class);
-                } catch (Exception ex) {
-                    System.out.println(ex.toString());
-                }
-
-                Stack<String> stack = new Stack<>();
-                Set<List<String>> edgeSet = new HashSet<>();
-
-                for (String node : nodes.keySet()) {
-                    stack.push(node);
-                    List<String> visited = new ArrayList<>();
-                    while (!stack.empty()) {
-                        String cur = stack.pop();
-                        visited.add(node);
-                        try {
-                            for (String adj : nodes.get(cur)) {
-                                if (!visited.contains(adj)) {
-                                    stack.push(adj);
-                                }
-                                List<String> edge = new ArrayList<>();
-                                edge.add(cur);
-                                edge.add(adj);
-                                edgeSet.add(edge);
-                            }
-                        } catch (Exception ex) {
-                            System.out.println(ex.toString());
-                        }
-                    }
-                }
-
-                for (List<String> e : edgeSet) {
-                    output.append(validateEdge(e.get(0), e.get(1), roleTree));
-                }
-
-                output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n"); //ToDo: this should be logged?
-            }
+            output.append(processLocalWeaverResult(roleTree, entry));
         }
 
         return output.toString();
+    }
+
+    private String processLocalWeaverResult(RoleNode roleTree, LocalWeaverResult entry) throws Exception {
+        if (entry.getType() == LocalWeaverResultType.SECURITY) {
+            return "";
+        }
+
+        StringBuilder output = new StringBuilder();
+
+        // MFD -- move to logging aspect
+        output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n"); //ToDo: this should be logged?
+
+        String json = entry.getData();
+
+        String[] jsons = json.split("@");
+
+        roles = new ObjectMapper().readValue(jsons[0], Map.class);
+        nodes = new ObjectMapper().readValue(jsons[1], Map.class);
+
+        Set<List<String>> edgeSet = DFSBuildEdges();
+
+        for (List<String> e : edgeSet) {
+            output.append(validateEdge(e.get(0), e.get(1), roleTree));
+        }
+
+        // MFD -- move to logging aspect
+        output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n"); //ToDo: this should be logged?
+
+        return output.toString();
+    }
+
+    private Set<List<String>> DFSBuildEdges() {
+        Stack<String> stack = new Stack<>();
+        Set<List<String>> edgeSet = new HashSet<>();
+
+        for (String node : nodes.keySet()) {
+            stack.push(node);
+            List<String> visited = new ArrayList<>();
+            while (!stack.empty()) {
+                String cur = stack.pop();
+                visited.add(node);
+                for (String adj : nodes.get(cur)) {
+                    if (!visited.contains(adj)) {
+                        stack.push(adj);
+                    }
+                    List<String> edge = new ArrayList<>();
+                    edge.add(cur);
+                    edge.add(adj);
+                    edgeSet.add(edge);
+                }
+            }
+        }
+        return edgeSet;
     }
     //ToDo: when database ready, modify to persist to DB
     private String validateEdge(String start, String end, RoleNode roleTree) {
         StringBuilder output = new StringBuilder();
         for ( String srole : roles.get(start) ) {
-            try {
-                for (String erole : roles.get(end)) {
-                    if (roleTree.subTree(erole).childContains(srole)
-                            && !roleTree.subTree(srole).childContains(erole)) {
-                        output.append("Error! Edge from ")
-                                .append(start)
-                                .append(" to ")
-                                .append(end)
-                                .append(" is invalid!\nThis is caused by role mismatch between ")
-                                .append(srole)
-                                .append(" and ")
-                                .append(erole)
-                                .append(".\n");
-                    }
+            for (String erole : roles.get(end)) {
+                if (roleTree.subTree(erole).childContains(srole)
+                        && !roleTree.subTree(srole).childContains(erole)) {
+                    output.append("Error! Edge from ")
+                            .append(start)
+                            .append(" to ")
+                            .append(end)
+                            .append(" is invalid!\nThis is caused by role mismatch between ")
+                            .append(srole)
+                            .append(" and ")
+                            .append(erole)
+                            .append(".\n");
                 }
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
             }
         }
         return output.toString();
