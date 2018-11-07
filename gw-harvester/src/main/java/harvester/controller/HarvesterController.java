@@ -12,11 +12,11 @@ import java.util.ArrayList;
 public class HarvesterController {
 
     @Autowired
-    HarvesterService harvesterService;
+    private HarvesterService harvesterService;
 
-    @RequestMapping(path = "/welcome", method = RequestMethod.GET)
+    @RequestMapping(path = "/handshake", method = RequestMethod.GET)
     public String home() {
-        return "Welcome to [ Harvester Service ] !";
+        return "OK - handshake";
     }
 
     @CrossOrigin(origins = "*")
@@ -34,5 +34,17 @@ public class HarvesterController {
         return harvesterService.getData(LocalWeaverResultType.DATA_MODEL);
     }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/flowStructure", method = RequestMethod.GET)
+    public HarvesterData getFlowStructure(){
+        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.FLOW_STRUCTURE.getResultType());
+        return harvesterData;
+    }
 
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/byteFlowStructure", method = RequestMethod.GET)
+    public HarvesterData getByteFlowStructure(){
+        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.BYTE_CODE_FLOW_STRUCTURE.getResultType());
+        return harvesterData;
+    }
 }

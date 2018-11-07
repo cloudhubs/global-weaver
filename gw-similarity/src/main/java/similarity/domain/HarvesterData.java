@@ -3,6 +3,9 @@ package similarity.domain;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Wrapper for local weavers data
+ */
 public class HarvesterData {
 
     private int status;

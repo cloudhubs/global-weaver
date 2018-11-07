@@ -12,7 +12,12 @@ import java.util.Collection;
 @Service
 public class MossService {
 
-    public URL getResutls() throws Exception{
+    /**
+     * Sends content of output directory to MOSS server
+     * @return
+     * @throws Exception
+     */
+    public URL getResults() throws Exception{
         // a list of students' source code files located in the prepared
         // directory.
         Collection<File> files = getFilesToBeCompared();
@@ -49,18 +54,22 @@ public class MossService {
         socketClient.sendQuery();
 
         //get URL with Moss results and do something with it
-        return socketClient.getResultURL();
+        URL url = socketClient.getResultURL();
+
+        System.out.println(url);
+
+        return url;
 
     }
 
     public Collection<File> getFilesToBeCompared(){
         return FileUtils.listFiles(new File(
-                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/output"), new String[] { "java" }, true);
+                "/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/output"), new String[] { "java" }, true);
     }
 
     public Collection<File> getBaseFiles(){
         return FileUtils.listFiles(new File(
-                "/Users/svacina/Dev/01Research/centralized-prespective/global-weaver/similarity-detection/input"), new String[] { "java" }, true);
+                "/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/input"), new String[] { "java" }, true);
     }
 
 }
