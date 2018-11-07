@@ -26,20 +26,20 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public String getSecurityData(String roleDef) {
-        ArrayList<HarvesterData> data;
+        HarvesterData data;
         StringBuilder output = new StringBuilder();
 
-        ResponseEntity<ArrayList<HarvesterData>> response = restTemplate.exchange(
-                "http://localhost:" + config.getServers().get(0) + "/security",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<ArrayList<HarvesterData>>(){});
-        data = response.getBody();
+        //ResponseEntity<HarvesterData> response = restTemplate.exchange(
+        //        "http://localhost:" + config.getServers().get(0) + "/security",
+        //        HttpMethod.GET,
+        //        null,
+        //        new ParameterizedTypeReference<HarvesterData>(){});
+        //data = response.getBody();
 
-        // Testing only. Eventually will loop over all response data
-        HarvesterData hd = data.get(0);
+        data = restTemplate.getForObject("http://localhost:" + config.getServers().get(0) + "/security",
+                HarvesterData.class);
 
-        ArrayList<LocalWeaverResult> results = hd.getData();
+        ArrayList<LocalWeaverResult> results = data.getData();
 
         RoleNode roleTree = createRoleTree(roleDef);
 

@@ -3,6 +3,7 @@ package harvester.service;
 import harvester.config.YAMLConfig;
 import harvester.domain.HarvesterData;
 import harvester.domain.LocalWeaverResult;
+import harvester.domain.LocalWeaverResultType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -20,22 +21,26 @@ public class HarvesterServiceImpl implements HarvesterService {
     private RestTemplate restTemplate;
 
     @Override
-    public HarvesterData getData(String path) {
+    public HarvesterData getData(LocalWeaverResultType resType) {
 
         HarvesterData harvest = new HarvesterData();
 
         List<String> servers = yamlConfig.getServers();
 
         ArrayList<LocalWeaverResult> arrayListLocalWeaverResult = new ArrayList<>();
-        for (String s: servers) {
-            String data = restTemplate.getForObject(
-                    "http://localhost:"+ s + "/local-weaver/" + path,
-                    String.class);
-            LocalWeaverResult localWeaverResult = new LocalWeaverResult();
-            localWeaverResult.setData(data);
-            localWeaverResult.setId(1);
-            localWeaverResult.setModuleId(1);
-            arrayListLocalWeaverResult.add(localWeaverResult);
+        for ( int i = 0; i < servers.size(); i++ ) {
+            try {
+                String data = restTemplate.getForObject(
+                        "http://localhost:" + servers.get(i) + "/local-weaver/" + resType.getResultType(),
+                        String.class);
+                LocalWeaverResult localWeaverResult = new LocalWeaverResult();
+                localWeaverResult.setData(data);
+                localWeaverResult.setModuleId(i);
+                localWeaverResult.setType(resType);
+                arrayListLocalWeaverResult.add(localWeaverResult);
+            } catch (Exception ex) {
+                System.out.println(ex.toString());
+            }
         }
         harvest.setData(arrayListLocalWeaverResult);
         harvest.setStatus(200);
