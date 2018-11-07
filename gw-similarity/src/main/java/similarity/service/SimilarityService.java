@@ -1,15 +1,15 @@
 package similarity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import similarity.domain.HarvesterData;
 import similarity.domain.LocalWeaverResult;
-
 import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,20 +65,10 @@ public class SimilarityService {
      * Create folder and file for each data input + insert the data
      * @param localWeaverGraphs
      */
-    private void createOutputFiles(ArrayList<LocalWeaverResult> localWeaverGraphs){
-        for (int i = 0; i < localWeaverGraphs.size(); i++){
-//            File file = new File("/Users/svacina/Dev/centralized-prespective/global-weaver/similarity-detection/output/module"+i+"/Similarity"+i+".java");
-//            file.getParentFile().mkdirs();
-//            try {
-//                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-//                writer.write(localWeaverGraphs.get(i).getData());
-//                writer.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
+    private void createOutputFiles(ArrayList<LocalWeaverResult> localWeaverGraphs) {
+        for (int i = 0; i < localWeaverGraphs.size(); i++) {
             try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                    new FileOutputStream("/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/output/module"+i+"/Similarity"+i+".java"), "utf-8"))) {
+                    new FileOutputStream("/Users/svacina/Dev/centralized-prespective/global-weaver/gw-similarity/output/module" + i + "/Similarity" + i + ".java"), "utf-8"))) {
                 String data = localWeaverGraphs.get(i).getData();
                 String dataEscaped = data.replaceAll("],\\[", "],\n[");
                 writer.write(dataEscaped);
@@ -89,8 +79,8 @@ public class SimilarityService {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
 
+        }
     }
 
     /**

@@ -98,7 +98,6 @@ public class SecurityServiceImpl implements SecurityService {
     private String validateEdge(String start, String end, RoleNode roleTree) {
         StringBuilder output = new StringBuilder();
         for ( String srole : roles.get(start) ) {
-//<<<<<<< HEAD
             try {
                 for (String erole : roles.get(end)) {
                     if (roleTree.subTree(erole).childContains(srole)
@@ -113,20 +112,6 @@ public class SecurityServiceImpl implements SecurityService {
                                 .append(erole)
                                 .append(".\n");
                     }
-//=======
-//            for ( String erole : roles.get(end) ) {
-//                if (roleTree.subTree(erole).childContains(srole)
-//                    && !roleTree.subTree(srole).childContains(erole)) {
-//                    output.append("Error! Edge from ")
-//                            .append(start)
-//                            .append(" to ")
-//                            .append(end)
-//                            .append(" and ")
-//                            .append(" is invalid!\nThis is caused by role mismatch between ")
-//                            .append(srole)
-//                            .append(erole)
-//                            .append(".\n");
-////>>>>>>> similarities calling harvester
                 }
             } catch (Exception ex) {
                 System.out.println(ex.toString());
