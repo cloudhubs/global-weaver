@@ -7,4 +7,6 @@ public class CommonJoinPointConfig {
     @Pointcut("execution(* data.service.DataService.*(..))")
     public void dataService(){}
 
+    @Pointcut("execution(* com.fasterxml.jackson.databind.ObjectMapper.readValue(..))")
+    public void parse(){}
 }
