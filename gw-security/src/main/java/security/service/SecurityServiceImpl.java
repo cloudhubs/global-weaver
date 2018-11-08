@@ -16,6 +16,9 @@ import java.util.*;
 public class SecurityServiceImpl implements SecurityService {
 
     @Autowired
+    SecurityServiceImpl securityService;
+
+    @Autowired
     YAMLConfig config;
 
     @Autowired
@@ -39,10 +42,11 @@ public class SecurityServiceImpl implements SecurityService {
 
         ArrayList<LocalWeaverResult> results = data.getData();
 
-        RoleNode roleTree = createRoleTree(roleDef);
+        RoleNode roleTree = securityService.createRoleTree(roleDef);
 
         for ( LocalWeaverResult entry : results ) {
-            output.append(processLocalWeaverResult(roleTree, entry));
+            String str = securityService.processLocalWeaverResult(roleTree, entry);
+            output.append(str);
         }
 
         return output.toString();
@@ -65,10 +69,10 @@ public class SecurityServiceImpl implements SecurityService {
         roles = new ObjectMapper().readValue(jsons[0], Map.class);
         nodes = new ObjectMapper().readValue(jsons[1], Map.class);
 
-        Set<List<String>> edgeSet = DFSBuildEdges();
+        Set<List<String>> edgeSet = securityService.DFSBuildEdges();
 
         for (List<String> e : edgeSet) {
-            output.append(validateEdge(e.get(0), e.get(1), roleTree));
+            output.append(securityService.validateEdge(e.get(0), e.get(1), roleTree));
         }
 
         // MFD -- move to logging aspect
@@ -77,7 +81,7 @@ public class SecurityServiceImpl implements SecurityService {
         return output.toString();
     }
 
-    private Set<List<String>> DFSBuildEdges() {
+    public Set<List<String>> DFSBuildEdges() {
         Stack<String> stack = new Stack<>();
         Set<List<String>> edgeSet = new HashSet<>();
 
@@ -87,35 +91,41 @@ public class SecurityServiceImpl implements SecurityService {
             while (!stack.empty()) {
                 String cur = stack.pop();
                 visited.add(node);
-                for (String adj : nodes.get(cur)) {
-                    if (!visited.contains(adj)) {
-                        stack.push(adj);
+                if (nodes.get(cur) != null) {
+                    for (String adj : nodes.get(cur)) {
+                        if (!visited.contains(adj)) {
+                            stack.push(adj);
+                        }
+                        List<String> edge = new ArrayList<>();
+                        edge.add(cur);
+                        edge.add(adj);
+                        edgeSet.add(edge);
                     }
-                    List<String> edge = new ArrayList<>();
-                    edge.add(cur);
-                    edge.add(adj);
-                    edgeSet.add(edge);
                 }
             }
         }
         return edgeSet;
     }
     //ToDo: when database ready, modify to persist to DB
-    private String validateEdge(String start, String end, RoleNode roleTree) {
+    public String validateEdge(String start, String end, RoleNode roleTree) {
         StringBuilder output = new StringBuilder();
-        for ( String srole : roles.get(start) ) {
-            for (String erole : roles.get(end)) {
-                if (roleTree.subTree(erole).childContains(srole)
-                        && !roleTree.subTree(srole).childContains(erole)) {
-                    output.append("Error! Edge from ")
-                            .append(start)
-                            .append(" to ")
-                            .append(end)
-                            .append(" is invalid!\nThis is caused by role mismatch between ")
-                            .append(srole)
-                            .append(" and ")
-                            .append(erole)
-                            .append(".\n");
+        if (roles.get(start) != null) {
+            for (String srole : roles.get(start)) {
+                if (roles.get(end) != null) {
+                    for (String erole : roles.get(end)) {
+                        if (roleTree.subTree(erole).childContains(srole)
+                                && !roleTree.subTree(srole).childContains(erole)) {
+                            output.append("Error! Edge from ")
+                                    .append(start)
+                                    .append(" to ")
+                                    .append(end)
+                                    .append(" is invalid!\nThis is caused by role mismatch between ")
+                                    .append(srole)
+                                    .append(" and ")
+                                    .append(erole)
+                                    .append(".\n");
+                        }
+                    }
                 }
             }
         }
@@ -123,7 +133,7 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     //ToDo: when database ready, modify to persist to DB
-    private RoleNode createRoleTree(String roleDef) {
+    public RoleNode createRoleTree(String roleDef) {
         String[] lines = roleDef.split("\n");
         if (lines[0].contains("->")) {
             System.out.println("ERROR! Line 0 should not be an edge!");

@@ -3,6 +3,10 @@ package security.domain;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * This is a DTO for the Harvester module. It allows other modules to easily obtain the information about local
+ * weavers through the Harvester module.
+ */
 public class HarvesterData {
 
     private int status;

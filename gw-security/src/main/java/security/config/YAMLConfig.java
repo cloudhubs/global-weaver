@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Profile;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This provides an interface to the yaml config file located in resources so that other classes can get info from it.
+ */
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties

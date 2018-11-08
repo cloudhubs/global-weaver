@@ -1,5 +1,9 @@
 package security.domain;
 
+/**
+ * This is a DTO for the Security module. It is currently unused, as the Security module does not return data
+ * that is more complex than a string.
+ */
 public class SecurityData {
 
     private boolean status;

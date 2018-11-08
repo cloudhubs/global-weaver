@@ -1,5 +1,8 @@
 package security.domain;
 
+/**
+ * This is a DTO for local weaver results. It is included in HarvesterData to transfer local weaver results.
+ */
 public class LocalWeaverResult {
     private int id;
     private LocalWeaverResultType type;
