@@ -1,12 +1,8 @@
 package data.aspect;
 
-import data.domain.HarvesterData;
-import data.domain.LocalWeaverResult;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Configurable;
@@ -19,9 +15,17 @@ public class DataLoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(DataLoggingAspect.class);
 
-    @Before(value="data.aspect.CommonJoinPointConfig.dataServiceGetData()")
-    public void getDataAspectMethod(JoinPoint joinPoint) throws Throwable {
+    @Around(value="data.aspect.CommonJoinPointConfig.dataService()")
+    public Object processModelDataInconsistenciesAspectMethodBefore(ProceedingJoinPoint joinPoint) throws Throwable {
+        logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
 
-        System.out.printf("ahoj");
+        String methodName = joinPoint.getSignature().getName();
+        Class source = joinPoint.getSourceLocation().getWithinType();
+
+        logger.info("[Entering " + methodName + " from " + source + "]");
+        Object j = joinPoint.proceed();
+        logger.info("[Leaving " + methodName + " from " + source + "]");
+
+        return j;
     }
 }

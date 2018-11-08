@@ -23,6 +23,9 @@ public class DataServiceImpl implements DataService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private DataServiceImpl dataService;
+
     /**
      * This method retrieves the Entity data for determining inconsistencies
      * @return HarvesterData for the Entity data
@@ -44,10 +47,10 @@ public class DataServiceImpl implements DataService {
         String ret = "";
 
         // Get the harvest from the local-weavers
-        HarvesterData harvest = getModelData();
+        HarvesterData harvest = dataService.getModelData();
 
         // Aggregate the EntityModels from all of the modules
-        List<EntityModel> entityModels = aggregateModelData(harvest.getData());
+        List<EntityModel> entityModels = dataService.aggregateModelData(harvest.getData());
 
         // Standard loop to check each EntityModel with every other EntityModel
         for (int i = 0; i < entityModels.size() - 1; i++) {
@@ -175,12 +178,12 @@ public class DataServiceImpl implements DataService {
 
         // Create a set of every possible entity name along with their package
         Set<String> entityNames = new HashSet<>();
-        for(EntityModel model : aggregateModelData(harvest.getData())){
+        for(EntityModel model : dataService.aggregateModelData(harvest.getData())){
             entityNames.add(model.getClassName());
         }
 
         // Retrieve the bytecode harvest
-        harvest = getBytecodeData();
+        harvest = dataService.getBytecodeData();
 
         // Loop through each module of the bytecode harvest
         for(LocalWeaverResult localWeaverResult : harvest.getData()){
