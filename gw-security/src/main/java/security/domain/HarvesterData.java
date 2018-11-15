@@ -9,10 +9,19 @@ import java.util.Objects;
  */
 public class HarvesterData {
 
+    /**
+     * This is the HTTP status of the request.
+     */
     private int status;
 
+    /**
+     * This is the HTTP message from the request.
+     */
     private String message;
 
+    /**
+     * This is a list of all LocalWeaverResult objects associated with the request.
+     */
     private ArrayList<LocalWeaverResult> data;
 
     public HarvesterData() {

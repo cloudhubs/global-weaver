@@ -29,7 +29,7 @@ public class SecurityServiceImpl implements SecurityService {
 
     //ToDo: description, too long method,
     @Override
-    public String getSecurityData(String roleDef) throws Exception {
+    public SecurityData getSecurityData(String roleDef) throws Exception {
         HarvesterData data;
         StringBuilder output = new StringBuilder();
 
@@ -49,7 +49,12 @@ public class SecurityServiceImpl implements SecurityService {
             output.append(str);
         }
 
-        return output.toString();
+        SecurityData ret = new SecurityData();
+        ret.setStatus(200);
+        ret.setMessage("OK");
+        ret.setData(output.toString());
+
+        return ret;
     }
 
     public String processLocalWeaverResult(RoleNode roleTree, LocalWeaverResult entry) throws Exception {
@@ -58,9 +63,6 @@ public class SecurityServiceImpl implements SecurityService {
         }
 
         StringBuilder output = new StringBuilder();
-
-        // MFD -- move to logging aspect
-        //output.append("Now processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + ":\n"); //ToDo: this should be logged?
 
         String json = entry.getData();
 
@@ -74,9 +76,6 @@ public class SecurityServiceImpl implements SecurityService {
         for (List<String> e : edgeSet) {
             output.append(securityService.validateEdge(e.get(0), e.get(1), roleTree));
         }
-
-        // MFD -- move to logging aspect
-        //output.append("Done processing Module " + entry.getModuleId() + " - " + entry.getModuleName() + "!\n\n"); //ToDo: this should be logged?
 
         return output.toString();
     }

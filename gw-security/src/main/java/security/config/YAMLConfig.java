@@ -17,8 +17,19 @@ import java.util.List;
 @Profile("prod")
 public class YAMLConfig {
 
+    /**
+     * This is the name of the module.
+     */
     private String name;
+
+    /**
+     * This is the environment name within which this configuration is valid.
+     */
     private String environment;
+
+    /**
+     * This is the list servers available in this configuration.
+     */
     private List<String> servers = new ArrayList<>();
 
 

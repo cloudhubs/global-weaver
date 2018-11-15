@@ -1,5 +1,6 @@
 package security.controller;
 
+import security.domain.SecurityData;
 import security.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class SecurityController {
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security/{id}", method = RequestMethod.GET)
-    public String getAllContacts(@PathVariable String id) throws Exception {
+    public SecurityData getAllContacts(@PathVariable String id) throws Exception {
         System.out.println("[Admin Basic Info Service][Find All Contacts by admin: " + id);
         String roleDefTest = "S  uperAd min   \n" +
                 "Super   Admin->Admin\n" +
@@ -44,7 +45,7 @@ public class SecurityController {
                 "Admin->  User\n" +
                 "User->Guest\n" +
                 "Admin ->Moderator\n" +
-                "Moderator<->Reviewer";
+                "Admin<->Reviewer";
         return securityService.getSecurityData(roleDefTest);
     }
 

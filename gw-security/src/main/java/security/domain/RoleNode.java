@@ -81,14 +81,14 @@ public class RoleNode {
 
     /**
      * This will insert a new node with the given Role beneath the node with value
+     * given by beneath. It will return true if the insert succeeds and false otherwise.
      *
-     * @param role
-     * @param beneath
-     * @return
+     * @param role The role to insert
+     * @param beneath The node to insert beneath
+     * @return true if successful, false otherwise
      */
     public boolean insert(String role, String beneath) {
-        RoleNode match = new ArrayList<>();
-        match = this.search(role);
+        RoleNode match = this.search(role);
         if (match != null) {
             RoleNode node = match;
             match = this.search(beneath);
@@ -107,27 +107,43 @@ public class RoleNode {
         return true;
     }
 
+    /**
+     * This will get the subtree with the given role as its root. If the role is not in the tree,
+     * null will be returned.
+     *
+     * @param role The role whose subtree will be returned
+     * @return The role searched for, or null if it is not found
+     */
     public RoleNode subTree(String role) {
-        RoleNode match = new ArrayList<>();
-        match = this.search(role);
-        if (match != null) {
-            return match;
-        }
-        return null;
+        return this.search(role);
     }
 
+    /**
+     * This will check if the tree contains the given role.
+     *
+     * @param role The role for which to check
+     * @return true if found, false otherwise
+     */
     public boolean contains(String role) {
-        List<RoleNode> matches = new ArrayList<>();
-        matches = this.search(role);
-        return !matches.isEmpty();
+        return this.search(role) != null;
     }
 
+    /**
+     * This will check if any of the node's children contain the given role. Similar to contains(), but
+     * excludes the current node. Notably, if any node in the subtrees of the current node's children contains
+     * the current node as a child, this will effectively operate exactly as contains(), since the current node
+     * will also be checked.
+     *
+     * @param role The role for which to check
+     * @return true if found, false otherwise
+     */
     public boolean childContains(String role) {
-        List<RoleNode> matches = new ArrayList<>();
         for ( RoleNode child : this.children ) {
-            matches.addAll(this.search(role));
+            if (child.contains(role)) {
+                return true;
+            }
         }
-        return !matches.isEmpty();
+        return false;
     }
 
     @Override
