@@ -23,7 +23,7 @@ public abstract class DataService {
      */
     public HarvesterData getModelData() {
         return restTemplate.getForObject(
-                "http://localhost:7003/dataModel",
+                "http://localhost:7002/dataModel",
                 HarvesterData.class);
     }
 
@@ -33,7 +33,7 @@ public abstract class DataService {
      */
     public HarvesterData getBytecodeData() {
         return restTemplate.getForObject(
-                "http://localhost:7003/byteFlowStructure",
+                "http://localhost:7002/byteFlowStructure",
                 HarvesterData.class);
     }
 
