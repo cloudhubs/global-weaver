@@ -11,5 +11,5 @@ spring:
       percentage: 1.0
 environment: production
 servers:
-- 7003
-- 8001
+- 7002
+- 7011
