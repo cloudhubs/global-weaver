@@ -1,11 +1,74 @@
 package data.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import data.domain.EntityModel;
 import data.domain.HarvesterData;
+import data.domain.LocalWeaverResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-public interface DataService {
+import java.util.ArrayList;
+import java.util.List;
 
-    HarvesterData getModelData();
+public abstract class DataService {
 
-    String processModelData();
+    @Autowired
+    private RestTemplate restTemplate;
+
+    /**
+     * This method retrieves the Entity data for determining inconsistencies
+     * @return HarvesterData for the Entity data
+     */
+    public HarvesterData getModelData() {
+        return restTemplate.getForObject(
+                "http://localhost:7003/dataModel",
+                HarvesterData.class);
+    }
+
+    /**
+     * This method is an internal method to retrieve the bytecode flow graph for determining possible validation points
+     * @return HarvesterData for the bytecode flow graph
+     */
+    public HarvesterData getBytecodeData() {
+        return restTemplate.getForObject(
+                "http://localhost:7003/byteFlowStructure",
+                HarvesterData.class);
+    }
+
+    /**
+     * This method will parse all of the module's JSON into a list of EntityModel objects which will be aggregated into
+     * a single list
+     * @param data the list of results to aggreagte
+     * @return a list of all entities from all modules
+     */
+    public List<EntityModel> aggregateModelData(List<LocalWeaverResult> data){
+        // Setup return values
+        List<EntityModel> models = new ArrayList<>();
+
+        // Loop through all of the modules, extracting their LocalWeaverResult
+        for(LocalWeaverResult result : data){
+
+            // Parse the result's data (JSON string) into a List<EntityModel>
+            List<EntityModel> tempModels = null;
+            try{
+                tempModels = new ObjectMapper().readValue(result.getData(), new TypeReference<List<EntityModel>>(){});
+            } catch (Exception e){
+                System.out.println(e.toString());
+            }
+
+            // Check in case the parse was unsuccessful
+            if(tempModels != null){
+                // Aggregate the list into the global list to be returned
+                models.addAll(tempModels);
+            }
+
+        }
+        // Return the global list of EntityModel objects
+        return models;
+    }
+
+    abstract String process();
 
 }
