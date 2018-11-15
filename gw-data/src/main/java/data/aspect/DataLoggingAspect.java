@@ -1,8 +1,8 @@
 package data.aspect;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import data.domain.EntityModel;
-import org.aspectj.lang.JoinPoint;
+import data.domain.HarvesterData;
+import data.domain.LocalWeaverResult;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -19,44 +19,61 @@ public class DataLoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(DataLoggingAspect.class);
 
-    @Around(value="data.aspect.CommonJoinPointConfig.dataService()")
-    public Object processModelDataInconsistenciesAspectMethodBefore(ProceedingJoinPoint joinPoint) throws Throwable {
-        String methodName = joinPoint.getSignature().getName();
-        Class source = joinPoint.getSourceLocation().getWithinType();
-
+    @Around(value="data.aspect.CommonJoinPointConfig.controllerInconsistencies()")
+    public Object controllerInconsistenciesAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        logger.info("[Calculating inconsistencies ... ]");
+        Object o = joinPoint.proceed();
         resetLogger(joinPoint.getSignature().getDeclaringType());
-        logger.info("[Entering " + methodName + " from " + source + "]");
-        Object j = joinPoint.proceed();
-        resetLogger(joinPoint.getSignature().getDeclaringType());
-        logger.info("[Leaving " + methodName + " from " + source + "]");
-
-        return j;
+        logger.info("[Finished processing inconsistencies.]");
+        return o;
     }
 
-    @Around(value="data.aspect.CommonJoinPointConfig.parse()")
-    public Object parseLogging(ProceedingJoinPoint joinPoint) throws Throwable {
-        String methodName = joinPoint.getSignature().getName();
-
+    @Around(value="data.aspect.CommonJoinPointConfig.controllerValidation()")
+    public Object controllerValidationAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        logger.info("[Calculating validation points ... ]");
+        Object o = joinPoint.proceed();
         resetLogger(joinPoint.getSignature().getDeclaringType());
-        logger.info("[Entering " + methodName + "]");
-        Object j = joinPoint.proceed();
-        logger.info(j.getClass().getName());
-        if(j instanceof List<?>){
-            List<?> list = (List<?>)j;
-            if(list.size() > 0){
-                Object k = list.get(0);
-                if(k instanceof EntityModel){
-                    List<EntityModel> entityModels = (List<EntityModel>)list;
-                    for(EntityModel e : entityModels){
-                        logger.info("[Parsing EntityModel " + e.getSimpleClassName() + "]");
-                    }
-                }
-            }
+        logger.info("[Finished processing validation points.]");
+        return o;
+    }
+
+    @Around(value="data.aspect.CommonJoinPointConfig.serviceGetModelData()")
+    public Object sserviceGetModelDataAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        resetLogger(joinPoint.getSignature().getDeclaringType());
+        logger.info("[Retrieving harvester entity data ... ]");
+        Object o = joinPoint.proceed();
+        HarvesterData harvest = (HarvesterData)o;
+        for(LocalWeaverResult lwr : harvest.getData()){
+            logger.info("[Retrieved harvester entity data for module " + lwr.getModuleName() + "]");
         }
-        resetLogger(joinPoint.getSignature().getDeclaringType());
-        logger.info("[Leaving " + methodName + "]");
+        logger.info("[Finished retrieving harvester entity data.]");
+        return o;
+    }
 
-        return j;
+    @Around(value="data.aspect.CommonJoinPointConfig.serviceGetBytecodeData()")
+    public Object serviceGetBytecodeDataAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        resetLogger(joinPoint.getSignature().getDeclaringType());
+        logger.info("[Retrieving harvester bytecode data ... ]");
+        Object o = joinPoint.proceed();
+        HarvesterData harvest = (HarvesterData)o;
+        for(LocalWeaverResult lwr : harvest.getData()){
+            logger.info("[Retrieved harvester bytecode data for module " + lwr.getModuleName() + "]");
+        }
+        logger.info("[Finished retrieving harvester bytecode data.]");
+        return o;
+    }
+
+    @Around(value="data.aspect.CommonJoinPointConfig.serviceAggregateModelData()")
+    public Object serviceAggregateModelDataAround(ProceedingJoinPoint joinPoint) throws Throwable {
+        resetLogger(joinPoint.getSignature().getDeclaringType());
+        logger.info("[Aggregating entity data ... ]");
+        Object o = joinPoint.proceed();
+        List<EntityModel> models = (List<EntityModel>)o;
+        for(EntityModel model : models){
+            logger.info("[Aggregating entity " + model.getClassName() + "]");
+        }
+        logger.info("[Finished aggregating entity data.]");
+        return o;
     }
 
     private void resetLogger(Class clazz){
