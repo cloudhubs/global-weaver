@@ -12,3 +12,4 @@ spring:
 environment: production
 servers:
 - 7003
+- 8001

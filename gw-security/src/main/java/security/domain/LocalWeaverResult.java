@@ -1,10 +1,33 @@
 package security.domain;
 
+/**
+ * This is a DTO for local weaver results. It is included in HarvesterData to transfer local weaver results.
+ */
 public class LocalWeaverResult {
+
+    /**
+     * This is the id of this result.
+     */
     private int id;
+
+    /**
+     * This is the type of this result. It is an enumerated value.
+     */
     private LocalWeaverResultType type;
+
+    /**
+     * This string will contain the JSON data to be parsed.
+     */
     private String data;
+
+    /**
+     * This is the id of the module from which this result was returned.
+     */
     private int moduleId;
+
+    /**
+     * This is the name of the module from which this result was returned.
+     */
     private String moduleName;
 
     public LocalWeaverResult() {
@@ -49,4 +72,5 @@ public class LocalWeaverResult {
     public void setModuleName(String moduleName) {
         this.moduleName = moduleName;
     }
+
 }
