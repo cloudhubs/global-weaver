@@ -1,25 +1,34 @@
 package data.controller;
 
 import data.service.DataService;
+import data.service.InconsistencyService;
+import data.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/data")
 public class DataController {
 
-    @Autowired
-    DataService dataService;
+    private InconsistencyService inconsistencyService;
+    private ValidationService validationService;
 
-    @RequestMapping(path = "/welcome", method = RequestMethod.GET)
-    public String home() {
-        return "Welcome to [ Data Service ] !";
+    @Autowired
+    public DataController(InconsistencyService inconsistencyService, ValidationService validationService) {
+        this.inconsistencyService = inconsistencyService;
+        this.validationService = validationService;
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/data", method = RequestMethod.GET)
-    public String getAllContacts(){
-        System.out.println("[Data Service][Find entity model inconsistencies]");
-        return dataService.processModelData();
+    @RequestMapping(path = "/inconsistencies", method = RequestMethod.GET)
+    public String findInconsistencies(){
+        return inconsistencyService.process();
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/validation", method = RequestMethod.GET)
+    public String findValidationPoints(){
+        return validationService.process();
     }
 
 }
