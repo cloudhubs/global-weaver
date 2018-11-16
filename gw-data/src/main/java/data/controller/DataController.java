@@ -6,6 +6,7 @@ import data.service.ValidationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+//ToDo: Short description of endpoints
 @RestController
 @RequestMapping("/data")
 public class DataController {

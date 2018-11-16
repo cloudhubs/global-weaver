@@ -8,10 +8,10 @@ import java.util.*;
 
 @Service
 public class InconsistencyService extends DataService {
-
+    //ToDo: self must be private
     @Autowired
     InconsistencyService self;
-
+    //ToDo: Instead "This method will..." - "Find inconsistent attributes in @Column definition of @Entity objects"
     /**
      * This method will find all of the inconsistencies with attributes on instance fields in Entity objects
      * @return A warning message denoting all of the inconsistencies
@@ -71,6 +71,8 @@ public class InconsistencyService extends DataService {
                                             if (!primaryAttributePair.getSecond().equals(secondaryAttributePair.getSecond())) {
 
                                                 // Add on a warning message to the return value
+                                                //ToDo: Move this chunk to separate method, it has absolutely different responsibility then this method
+                                                //ToDo: Retrieve object that will represent this inconsistency. Think about hierarchy of inconsistency result objects
                                                 ret = ret.concat(primary.getClassName() + "-"
                                                         + primaryInstanceModel.getVariableName() + "-"
                                                         + primaryAttributePair.getFirst() + ":"
@@ -79,10 +81,10 @@ public class InconsistencyService extends DataService {
                                                         + secondaryInstanceModel.getVariableName() + "-"
                                                         + secondaryAttributePair.getFirst() + ":"
                                                         + secondaryAttributePair.getSecond());
-                                                ret = ret.concat("\n");
-
+                                                ret = ret.concat("\n"); //ToDo: Investigate why this statement is called repeatedly on same violation
+                                                //ToDo: Get used to breakpoints instead
                                                 // Print some debugging info
-                                                System.out.println(primaryAttributePair.getFirst());
+                                                //System.out.println(primaryAttributePair.getFirst());
                                             }
                                         }
                                     }

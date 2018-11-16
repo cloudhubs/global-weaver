@@ -17,6 +17,7 @@ public abstract class DataService {
     @Autowired
     private RestTemplate restTemplate;
 
+    //ToDo: Move ip, port and interface (dataModel) to config
     /**
      * This method retrieves the Entity data for determining inconsistencies
      * @return HarvesterData for the Entity data
@@ -27,6 +28,7 @@ public abstract class DataService {
                 HarvesterData.class);
     }
 
+    //ToDo: Move ip, port and interface (dataModel) to config
     /**
      * This method is an internal method to retrieve the bytecode flow graph for determining possible validation points
      * @return HarvesterData for the bytecode flow graph
@@ -68,7 +70,7 @@ public abstract class DataService {
         // Return the global list of EntityModel objects
         return models;
     }
-
+    //ToDo: Rename to something like "getEntitiesInconsistencies"
     abstract String process();
 
 }
