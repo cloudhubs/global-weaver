@@ -17,7 +17,7 @@ public class SecurityController {
      */
     @Autowired
     SecurityService securityService;
-
+    //ToDo: Avoid "This endpoint will define", just "Handshake"
     /**
      * This endpoint will define a basic welcome page.
      *
@@ -28,17 +28,48 @@ public class SecurityController {
         return "Welcome to [ Security Service ] !";
     }
 
+//    /**
+//     * This endpoint provides the security information about the given id.
+//     *
+//     * //@param id The id about which to get security info
+//     * @return The info obtained
+//     * @throws Exception Any exceptions from the call
+//     */
+//    @CrossOrigin(origins = "*")
+//    @RequestMapping(path = "/security", method = RequestMethod.GET)
+//    public SecurityData getAllContacts() throws Exception {
+//        System.out.println("[Admin Basic Info Service][Find All Contacts by admin: ");
+//        String roleDefTest = "S  uperAd min   \n" +
+//                "Super   Admin->Admin\n" +
+//                "SuperAdmin->Revi ewer\n" +
+//                "Admin->  User\n" +
+//                "User->Guest\n" +
+//                "Admin ->Moderator\n" +
+//                "Admin<->Reviewer";
+//        return securityService.getSecurityData(roleDefTest);
+//    }
+//
+
     /**
-     * This endpoint provides the security information about the given id.
+     * ToDO:
+     * Controller should NEVER throw exceptions
+     * Use postman to upload text file and string -> there will be two ways
+     * Create service for converting input
+     * Rename method "getModulesPrivilegesViolations"
+     * Rename api
+     * aspect logging
+     * rename service -> privi
+     */
+
+    /**
+     * Get privileges violations across modules
      *
-     * @param id The id about which to get security info
-     * @return The info obtained
-     * @throws Exception Any exceptions from the call
+     * @return privileges violations
      */
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/security/{id}", method = RequestMethod.GET)
-    public SecurityData getAllContacts(@PathVariable String id) throws Exception {
-        System.out.println("[Admin Basic Info Service][Find All Contacts by admin: " + id);
+    @RequestMapping(path = "/security", method = RequestMethod.GET)
+    public SecurityData getAllContacts() throws Exception {
+        System.out.println("[Admin Basic Info Service][Find All Contacts by admin: ");
         String roleDefTest = "S  uperAd min   \n" +
                 "Super   Admin->Admin\n" +
                 "SuperAdmin->Revi ewer\n" +
@@ -48,5 +79,7 @@ public class SecurityController {
                 "Admin<->Reviewer";
         return securityService.getSecurityData(roleDefTest);
     }
+
+
 
 }

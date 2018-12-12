@@ -12,6 +12,7 @@ public class InconsistencyService extends DataService {
     @Autowired
     InconsistencyService self;
     //ToDo: Instead "This method will..." - "Find inconsistent attributes in @Column definition of @Entity objects"
+    //ToDo: No need to brute force check. Think about smarter way to pair attributes of entities
     /**
      * This method will find all of the inconsistencies with attributes on instance fields in Entity objects
      * @return A warning message denoting all of the inconsistencies
