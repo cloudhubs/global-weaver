@@ -1,8 +1,8 @@
 package security.service;
 
-import security.domain.LocalWeaverResult;
-import security.domain.RoleNode;
-import security.domain.SecurityData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
+import edu.baylor.ecs.seer.common.domain.Node;
+import edu.baylor.ecs.seer.common.domain.SecurityData;
 
 import java.util.List;
 import java.util.Set;
@@ -27,15 +27,15 @@ public interface SecurityService {
     SecurityData getSecurityData(String roleDef) throws Exception;
 
     /**
-     * This will process the given LocalWeaverResult based on the given RoleNode tree and return a string containing
+     * This will process the given LocalWeaverResult based on the given Node tree and return a string containing
      * all of the violations of the role tree that occur in the local weaver result.
      *
-     * @param roleTree The RoleNode tree against which the local weaver result will be checked
+     * @param roleTree The Node tree against which the local weaver result will be checked
      * @param result The LocalWeaverResult to be checked
      * @return A string containing security violation information
      * @throws Exception Any exceptions thrown; to be handled by the SecurityExceptionAspect
      */
-    String processLocalWeaverResult(RoleNode roleTree, LocalWeaverResult result) throws Exception;
+    String processLocalWeaverResult(Node roleTree, LocalWeaverResult result) throws Exception;
 
     /**
      * This will use a depth-first search to build a list of edges present in the local weaver data being analyzed.
@@ -60,7 +60,7 @@ public interface SecurityService {
      * @param roleTree The role tree against which the edge will be checked
      * @return Whether the edge is valid
      */
-    String validateEdge(String start, String end, RoleNode roleTree);
+    String validateEdge(String start, String end, Node roleTree);
 
     /**
      * This will create a role tree based on the given role definition string. The string must follow a specific
@@ -81,5 +81,5 @@ public interface SecurityService {
      * @param roleDef The role relationship definition string.
      * @return The created role tree
      */
-    RoleNode createRoleTree(String roleDef);
+    Node createRoleTree(String roleDef);
 }

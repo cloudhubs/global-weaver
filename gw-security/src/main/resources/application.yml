@@ -1,7 +1,8 @@
 server:
   port: 7003
 spring:
-  profiles: prod
+  profiles:
+    active: prod
   application:
     name: gw-security
   zipkin:
@@ -11,5 +12,9 @@ spring:
       percentage: 1.0
 environment: production
 servers:
-- 7002
-- 7011
+  - 7002
+  - 7011
+url: http://localhost
+endpoints:
+  - /security
+  - /

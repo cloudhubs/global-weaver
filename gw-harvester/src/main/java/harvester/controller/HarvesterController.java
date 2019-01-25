@@ -1,7 +1,7 @@
 package harvester.controller;
 
-import harvester.domain.HarvesterData;
-import harvester.domain.LocalWeaverResultType;
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResultType;
 import harvester.service.HarvesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

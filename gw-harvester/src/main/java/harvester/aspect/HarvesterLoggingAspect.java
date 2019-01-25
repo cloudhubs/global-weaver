@@ -1,8 +1,8 @@
 package harvester.aspect;
 
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
 import harvester.controller.HarvesterController;
-import harvester.domain.HarvesterData;
-import harvester.domain.LocalWeaverResult;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

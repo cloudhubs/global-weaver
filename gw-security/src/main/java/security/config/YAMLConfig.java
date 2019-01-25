@@ -23,6 +23,11 @@ public class YAMLConfig {
     private String name;
 
     /**
+     * This is the base url of the application.
+     */
+    private String url;
+
+    /**
      * This is the environment name within which this configuration is valid.
      */
     private String environment;
@@ -32,6 +37,11 @@ public class YAMLConfig {
      */
     private List<String> servers = new ArrayList<>();
 
+    /**
+     * This is the list of endpoints, matched to the list of servers.
+     */
+    private List<String> endpoints = new ArrayList<>();
+
 
     public String getName() {
         return name;
@@ -39,6 +49,14 @@ public class YAMLConfig {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getEnvironment() {
@@ -56,4 +74,13 @@ public class YAMLConfig {
     public void setServers(List<String> servers) {
         this.servers = servers;
     }
+
+    public List<String> getEndpoints() {
+        return endpoints;
+    }
+
+    public void setEndpoints(List<String> endpoints) {
+        this.endpoints = endpoints;
+    }
+
 }
