@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "48bf0cf8-2241-4e76-ae97-5f6bba10cce9",
+		"name": "CP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Benchmark",
+			"item": [
+				{
+					"name": "CAD",
+					"item": [
+						{
+							"name": "handshake",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7010/cad/handshake",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7010",
+									"path": [
+										"cad",
+										"handshake"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e31d9055-24ed-45d4-a6ba-4adac7c975f9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "16354b12-9706-4741-b290-6fe05d5b047c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "GW",
+			"item": [
+				{
+					"name": "security",
+					"item": [
+						{
+							"name": "welcome",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}7003/welcome",
+									"host": [
+										"{{url}}7003"
+									],
+									"path": [
+										"welcome"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "security",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7003/security",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7003",
+									"path": [
+										"security"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "generator",
+					"item": [
+						{
+							"name": "graph",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7001/generator/graph",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7001",
+									"path": [
+										"generator",
+										"graph"
+									]
+								},
+								"description": "deprecated - not updated"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "harvester",
+					"item": [
+						{
+							"name": "handshake",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/handshake",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"handshake"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "security",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/security",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"security"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "data-model",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/dataModel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"dataModel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "flow-structure",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/flowStructure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"flowStructure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "byteFlowStructure",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/byteFlowStructure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"byteFlowStructure"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "similarity",
+					"item": [
+						{
+							"name": "similarity-detection",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7004/similarity-detection",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7004",
+									"path": [
+										"similarity-detection"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		}
+	]
+}
