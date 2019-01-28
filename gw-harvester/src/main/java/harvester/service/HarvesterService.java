@@ -1,7 +1,7 @@
 package harvester.service;
 
-import harvester.domain.HarvesterData;
-import harvester.domain.LocalWeaverResultType;
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResultType;
 
 public interface HarvesterService {
 

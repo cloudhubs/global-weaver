@@ -46,6 +46,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>edu.baylor.ecs.seer</groupId>
+            <artifactId>seer-common</artifactId>
+            <version>0.1.0-RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>

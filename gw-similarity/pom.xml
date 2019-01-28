@@ -36,6 +36,11 @@
             <artifactId>moji</artifactId>
             <version>1.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>edu.baylor.ecs.seer</groupId>
+            <artifactId>seer-common</artifactId>
+            <version>0.1.0-RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
