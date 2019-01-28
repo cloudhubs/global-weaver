@@ -1,18 +1,20 @@
 package harvester.controller;
 
-import harvester.domain.HarvesterData;
-import harvester.domain.LocalWeaverResultType;
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResultType;
 import harvester.service.HarvesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class HarvesterController {
 
     @Autowired
     private HarvesterService harvesterService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     @RequestMapping(path = "/handshake", method = RequestMethod.GET)
     public String home() {
@@ -21,30 +23,34 @@ public class HarvesterController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security", method = RequestMethod.GET)
-    public HarvesterData getSecurity(){
-        System.out.println("[Harvester Service][Get security data. ");
-        HarvesterData data = harvesterService.getData(LocalWeaverResultType.SECURITY);
-        return data;
+    public HarvesterData getSecurity(){s
+        return harvesterService.getData(LocalWeaverResultType.SECURITY);
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/dataModel", method = RequestMethod.GET)
     public HarvesterData getDataModel(){
-        System.out.println("[Harvester Service][Get data model data. ");
         return harvesterService.getData(LocalWeaverResultType.DATA_MODEL);
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/flowStructure", method = RequestMethod.GET)
     public HarvesterData getFlowStructure(){
-        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.FLOW_STRUCTURE);
-        return harvesterData;
+        return harvesterService.getData(LocalWeaverResultType.FLOW_STRUCTURE);
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/byteFlowStructure", method = RequestMethod.GET)
     public HarvesterData getByteFlowStructure(){
-        HarvesterData harvesterData = harvesterService.getData(LocalWeaverResultType.BYTE_CODE_FLOW_STRUCTURE);
-        return harvesterData;
+        return harvesterService.getData(LocalWeaverResultType.BYTE_CODE_FLOW_STRUCTURE);
+    }
+
+    // Temp work -- should be improved later to support multiple endpoints
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/scanDirectory/{path}", method = RequestMethod.GET)
+    public String getSecurityLocalWeaver(@PathVariable String path) {
+        return restTemplate.getForObject(
+                "http://localhost:7002/local-weaver/flowStructure/" + path,
+                String.class);
     }
 }

@@ -1,6 +1,9 @@
 package data.service;
 
-import data.domain.*;
+import edu.baylor.ecs.seer.common.domain.EntityModel;
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.InstanceVariableModel;
+import edu.baylor.ecs.seer.common.domain.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

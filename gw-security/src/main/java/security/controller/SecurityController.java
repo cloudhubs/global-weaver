@@ -1,6 +1,6 @@
 package security.controller;
 
-import security.domain.SecurityData;
+import edu.baylor.ecs.seer.common.domain.SecurityData;
 import security.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +17,9 @@ public class SecurityController {
      */
     @Autowired
     SecurityService securityService;
-    //ToDo: Avoid "This endpoint will define", just "Handshake"
+
     /**
-     * This endpoint will define a basic welcome page.
+     * Handshake
      *
      * @return A welcome string
      */

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "48bf0cf8-2241-4e76-ae97-5f6bba10cce9",
+		"_postman_id": "beb5a205-ecbf-4595-9243-862816552005",
 		"name": "CP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -259,6 +259,29 @@
 									"port": "7002",
 									"path": [
 										"byteFlowStructure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "scanDirectory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/scanDirectory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"scanDirectory"
 									]
 								}
 							},

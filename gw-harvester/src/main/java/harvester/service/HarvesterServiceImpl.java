@@ -1,9 +1,9 @@
 package harvester.service;
 
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResultType;
 import harvester.config.YAMLConfig;
-import harvester.domain.HarvesterData;
-import harvester.domain.LocalWeaverResult;
-import harvester.domain.LocalWeaverResultType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

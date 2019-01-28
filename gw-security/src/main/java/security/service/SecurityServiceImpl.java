@@ -1,11 +1,11 @@
 package security.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.baylor.ecs.seer.common.domain.*;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import security.config.YAMLConfig;
-import security.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -27,14 +27,14 @@ public class SecurityServiceImpl implements SecurityService {
     private Map<String, List<String>> roles = null;
     private Map<String, List<String>> nodes = null;
 
-    //ToDo: description, too long method,
+    //ToDo: description
     @Override
     public SecurityData getSecurityData(String roleDef) throws Exception {
         HarvesterData data;
         StringBuilder output = new StringBuilder();
 
         ResponseEntity<HarvesterData> response = restTemplate.exchange(
-                "http://localhost:" + config.getServers().get(0) + "/security",
+                config.getUrl() + ":" + config.getServers().get(0) + config.getEndpoints().get(0),
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<HarvesterData>(){});
@@ -42,7 +42,7 @@ public class SecurityServiceImpl implements SecurityService {
 
         ArrayList<LocalWeaverResult> results = data.getData();
 
-        RoleNode roleTree = securityService.createRoleTree(roleDef);
+        Node roleTree = securityService.createRoleTree(roleDef);
 
         for ( LocalWeaverResult entry : results ) {
             String str = securityService.processLocalWeaverResult(roleTree, entry);
@@ -57,7 +57,7 @@ public class SecurityServiceImpl implements SecurityService {
         return ret;
     }
 
-    public String processLocalWeaverResult(RoleNode roleTree, LocalWeaverResult entry) throws Exception {
+    public String processLocalWeaverResult(Node roleTree, LocalWeaverResult entry) throws Exception {
         if (entry.getType() != LocalWeaverResultType.SECURITY) {
             return "";
         }
@@ -106,7 +106,7 @@ public class SecurityServiceImpl implements SecurityService {
         return edgeSet;
     }
     //ToDo: when database ready, modify to persist to DB
-    public String validateEdge(String start, String end, RoleNode roleTree) {
+    public String validateEdge(String start, String end, Node roleTree) {
         StringBuilder output = new StringBuilder();
         if (roles.get(start) != null) {
             for (String srole : roles.get(start)) {
@@ -132,14 +132,14 @@ public class SecurityServiceImpl implements SecurityService {
     }
 
     //ToDo: when database ready, modify to persist to DB
-    public RoleNode createRoleTree(String roleDef) {
+    public Node createRoleTree(String roleDef) {
         String[] lines = roleDef.split("\n");
         if (lines[0].contains("->")) {
             System.out.println("ERROR! Line 0 should not be an edge!");
             return null;
         }
 
-        RoleNode roleTree = new RoleNode(lines[0].replaceAll(" ", ""));
+        Node roleTree = new Node(lines[0].replaceAll(" ", ""));
 
         for ( int i = 1; i < lines.length; i++ ) {
             String line = lines[i].replaceAll(" ", "");

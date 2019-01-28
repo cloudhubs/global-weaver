@@ -2,10 +2,10 @@ package data.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import data.domain.EntityModel;
-import data.domain.HarvesterData;
-import data.domain.LocalWeaverResult;
-import data.domain.Node;
+import edu.baylor.ecs.seer.common.domain.FlowNode;
+import edu.baylor.ecs.seer.common.domain.EntityModel;
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,10 +39,10 @@ public class ValidationService extends DataService {
             // Retrieve the JSON from the module
             String inJSON = localWeaverResult.getData();
 
-            // Convert into a list of methods (HashMap of Integer to Node)
-            List<Map<Integer, Node>> methods = null;
+            // Convert into a list of methods (HashMap of Integer to FlowNode)
+            List<Map<Integer, FlowNode>> methods = null;
             try {
-                methods = new ObjectMapper().readValue(inJSON, new TypeReference<List<Map<Integer, Node>>>() {});
+                methods = new ObjectMapper().readValue(inJSON, new TypeReference<List<Map<Integer, FlowNode>>>() {});
             } catch (Exception e){
                 System.out.println(e.toString());
             }
@@ -50,12 +50,12 @@ public class ValidationService extends DataService {
             // Check to make sure the parse was successful
             if(methods != null){
                 // Loop through every method and look at the bytecode
-                for(Map<Integer, Node> nodes : methods) {
+                for(Map<Integer, FlowNode> nodes : methods) {
                     // Loop through the keyset to access every node in the map
                     for (Integer key : nodes.keySet()) {
 
                         // Retrieve the node
-                        Node n = nodes.get(key);
+                        FlowNode n = nodes.get(key);
 
                         // If it is a method node then it is eligible to be a validation point
                         if (n.getType().equals("method")) {

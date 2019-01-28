@@ -1,8 +1,8 @@
 package data.aspect;
 
-import data.domain.EntityModel;
-import data.domain.HarvesterData;
-import data.domain.LocalWeaverResult;
+import edu.baylor.ecs.seer.common.domain.EntityModel;
+import edu.baylor.ecs.seer.common.domain.HarvesterData;
+import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
