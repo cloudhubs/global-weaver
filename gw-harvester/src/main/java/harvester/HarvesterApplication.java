@@ -13,7 +13,7 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication()
+@SpringBootApplication(scanBasePackages = {"edu.baylor.ecs.seer.lweaver", "harvester"})
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
 @IntegrationComponentScan
