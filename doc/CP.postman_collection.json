@@ -274,16 +274,18 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:7002/scanDirectory",
+									"raw": "http://localhost:7002/scanDirectory/^~test~~!r!~",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "7002",
 									"path": [
-										"scanDirectory"
+										"scanDirectory",
+										"^~test~~!r!~"
 									]
-								}
+								},
+								"description": "The path argument passed is relative to your global weaver directory (currently). Also, due to restrictions on characters, some substitutes are used.\n^ -- ..\n~ -- /\nAlso, a suffix must be applied to the path to tell it to parse this way: ~!r!~\n\nThe example call will scan a directory called test one directory above the global weaver installation (../temp/)."
 							},
 							"response": []
 						}

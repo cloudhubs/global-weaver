@@ -23,7 +23,7 @@ public class HarvesterController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/security", method = RequestMethod.GET)
-    public HarvesterData getSecurity(){s
+    public HarvesterData getSecurity(){
         return harvesterService.getData(LocalWeaverResultType.SECURITY);
     }
 
