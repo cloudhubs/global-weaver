@@ -2,6 +2,8 @@ package harvester;
 
 import harvester.config.Spring;
 import harvester.config.YAMLConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,10 +22,12 @@ import org.springframework.web.client.RestTemplate;
 public class HarvesterApplication implements CommandLineRunner {
 
     @Autowired
-    private YAMLConfig myConfig;
+    private YAMLConfig yamlConfig;
 
     @Autowired
     private Spring spring;
+
+    private Logger log = LoggerFactory.getLogger(HarvesterApplication.class);
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(HarvesterApplication.class, args);
@@ -36,9 +40,7 @@ public class HarvesterApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        System.out.println("using environment: " + myConfig.getEnvironment());
-        System.out.println("name: " + myConfig.getName());
-        System.out.println("servers: " + myConfig.getServers());
-        System.out.println(spring.getApplication().getName());
+        log.info("Environment: " + yamlConfig.getEnvironment());
+        log.info("Reachable server ports: " + yamlConfig.getServers());
     }
 }

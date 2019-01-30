@@ -5,6 +5,7 @@ import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
 import harvester.controller.HarvesterController;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -32,10 +33,10 @@ public class HarvesterLoggingAspect {
         return harvesterData;
     }
 
-    @Before(value="harvester.aspect.CommonJoinPointConfig.harvesterControllerMethods()")
+    @After(value="harvester.aspect.CommonJoinPointConfig.harvesterControllerMethods()")
     public void logHarvesterController(JoinPoint joinPoint){
         logger = LoggerFactory.getLogger(HarvesterController.class);
-        logger.info(joinPoint.getSignature().getName() + "method call");
+        logger.info("Welcome method");
     }
 
 }
