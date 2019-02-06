@@ -1,7 +1,7 @@
 package harvester.aspect;
 
-import edu.baylor.ecs.seer.common.domain.HarvesterData;
-import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
+//import edu.baylor.ecs.seer.common.domain.HarvesterData;
+//import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
 import harvester.controller.HarvesterController;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,17 +21,17 @@ public class HarvesterLoggingAspect {
 
     private Logger logger = LoggerFactory.getLogger(HarvesterLoggingAspect.class);
 
-    @Around(value="harvester.aspect.CommonJoinPointConfig.harvesterServiceGetData()")
-    public HarvesterData getDataAspectMethod(ProceedingJoinPoint joinPoint) throws Throwable {
-        logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
-        HarvesterData harvesterData = (HarvesterData) joinPoint.proceed();
-        for (LocalWeaverResult lr: harvesterData.getData()
-             ) {
-            //ToDo name is null!
-            logger.info("Getting data from local weaver: " + lr.getModuleName());
-        }
-        return harvesterData;
-    }
+//    @Around(value="harvester.aspect.CommonJoinPointConfig.harvesterServiceGetData()")
+//    public HarvesterData getDataAspectMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+//        logger = LoggerFactory.getLogger(joinPoint.getSignature().getDeclaringType());
+//        HarvesterData harvesterData = (HarvesterData) joinPoint.proceed();
+//        for (LocalWeaverResult lr: harvesterData.getData()
+//             ) {
+//            //ToDo name is null!
+//            logger.info("Getting data from local weaver: " + lr.getModuleName());
+//        }
+//        return harvesterData;
+//    }
 
     @After(value="harvester.aspect.CommonJoinPointConfig.harvesterControllerMethods()")
     public void logHarvesterController(JoinPoint joinPoint){

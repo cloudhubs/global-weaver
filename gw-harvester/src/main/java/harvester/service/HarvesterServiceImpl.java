@@ -1,52 +1,57 @@
 package harvester.service;
 
-import edu.baylor.ecs.seer.common.domain.HarvesterData;
-import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
-import edu.baylor.ecs.seer.common.domain.LocalWeaverResultType;
-import harvester.config.YAMLConfig;
+import edu.baylor.ecs.seer.common.context.SeerContext;
+import edu.baylor.ecs.seer.common.context.SeerRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class HarvesterServiceImpl implements HarvesterService {
 
     @Autowired
-    private YAMLConfig yamlConfig;
+    private RemoteSourceService remoteSourceService;
 
     @Autowired
-    private RestTemplate restTemplate;
+    private LocalSourceService localSourceService;
+
+    @Autowired
+    private EntityAnalyzerService entityAnalyzerService;
 
     @Override
-    public HarvesterData getData(LocalWeaverResultType resType) {
+    public SeerContext collectContextData(SeerContext seerContext) {
 
-        HarvesterData harvest = new HarvesterData();
+        SeerRequestContext req = seerContext.getRequest();
 
-        List<String> servers = yamlConfig.getServers();
-
-        ArrayList<LocalWeaverResult> arrayListLocalWeaverResult = new ArrayList<>();
-        for ( int i = 0; i < servers.size(); i++ ) {
-            try {
-                String data = restTemplate.getForObject(
-                        "http://localhost:" + servers.get(i) + "/local-weaver/" + resType.getResultType(),
-                        String.class);
-                LocalWeaverResult localWeaverResult = new LocalWeaverResult();
-                localWeaverResult.setData(data);
-                localWeaverResult.setModuleId(i);
-                localWeaverResult.setType(resType);
-                arrayListLocalWeaverResult.add(localWeaverResult);
-            } catch (Exception ex) {
-                System.out.println(ex.toString());
-            }
+        if (req.isUseRemote()){
+            seerContext = this.collectDataFromRemote(seerContext);
+        } else {
+            seerContext = this.collectDataFromLocal(seerContext);
         }
-        harvest.setData(arrayListLocalWeaverResult);
-        harvest.setStatus(200);
-        harvest.setMessage("OK");
 
-        return harvest;
+        seerContext = this.collectDataFromEntityAnalyzer(seerContext);
+
+        return this.collectDataFromSecurityAnalyzer(seerContext);
+
+    }
+
+    @Override
+    public SeerContext collectDataFromLocal(SeerContext seerContext) {
+        return localSourceService.collectDataFromLocalSource(seerContext);
+    }
+
+    @Override
+    public SeerContext collectDataFromRemote(SeerContext seerContext) {
+        return remoteSourceService.collectDataFromRemoteSource(seerContext);
+    }
+
+    @Override
+    public SeerContext collectDataFromEntityAnalyzer(SeerContext seerContext) {
+        return entityAnalyzerService.analyzeEntityConcern(seerContext);
+    }
+
+    @Override
+    public SeerContext collectDataFromSecurityAnalyzer(SeerContext seerContext) {
+        return null;
     }
 
 }

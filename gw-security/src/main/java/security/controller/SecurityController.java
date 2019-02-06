@@ -1,6 +1,5 @@
 package security.controller;
 
-import edu.baylor.ecs.seer.common.domain.SecurityData;
 import security.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

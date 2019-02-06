@@ -33,3 +33,5 @@ servers:
 - 7011
 #- 18767
 #- 16112
+
+sourceDirectory: "/Users/svacina/dev/cerny/centralized-prespective/cm5-source"

@@ -17,7 +17,15 @@ public class YAMLConfig {
     private String name;
     private String environment;
     private List<String> servers = new ArrayList<>();
+    private String sourceDirectory;
 
+    public String getSourceDirectory() {
+        return sourceDirectory;
+    }
+
+    public void setSourceDirectory(String sourceDirectory) {
+        this.sourceDirectory = sourceDirectory;
+    }
 
     public String getName() {
         return name;
