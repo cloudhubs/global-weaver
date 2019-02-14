@@ -14,19 +14,4 @@ public interface HarvesterService {
      */
     SeerContext collectDataFromLocal(SeerContext seerContext);
 
-    /**
-     * Calls local weaver on remote server
-     */
-    SeerContext collectDataFromRemote(SeerContext seerContext);
-
-    /**
-     * Calls entity analyzer
-     */
-    SeerContext collectDataFromEntityAnalyzer(SeerContext seerContext);
-
-    /**
-     * Calls security analyzer
-     */
-    SeerContext collectDataFromSecurityAnalyzer(SeerContext seerContext);
-
 }

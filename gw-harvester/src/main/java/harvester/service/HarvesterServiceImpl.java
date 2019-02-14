@@ -14,8 +14,7 @@ public class HarvesterServiceImpl implements HarvesterService {
     @Autowired
     private LocalSourceService localSourceService;
 
-    @Autowired
-    private EntityAnalyzerService entityAnalyzerService;
+
 
     @Override
     public SeerContext collectContextData(SeerContext seerContext) {
@@ -24,11 +23,12 @@ public class HarvesterServiceImpl implements HarvesterService {
 
         if (req.isUseRemote()){
             seerContext = this.collectDataFromRemote(seerContext);
+            seerContext = this.collectDataFromEntityAnalyzer(seerContext);
         } else {
             seerContext = this.collectDataFromLocal(seerContext);
         }
 
-        seerContext = this.collectDataFromEntityAnalyzer(seerContext);
+
 
         return this.collectDataFromSecurityAnalyzer(seerContext);
 
@@ -44,14 +44,6 @@ public class HarvesterServiceImpl implements HarvesterService {
         return remoteSourceService.collectDataFromRemoteSource(seerContext);
     }
 
-    @Override
-    public SeerContext collectDataFromEntityAnalyzer(SeerContext seerContext) {
-        return entityAnalyzerService.analyzeEntityConcern(seerContext);
-    }
 
-    @Override
-    public SeerContext collectDataFromSecurityAnalyzer(SeerContext seerContext) {
-        return null;
-    }
 
 }

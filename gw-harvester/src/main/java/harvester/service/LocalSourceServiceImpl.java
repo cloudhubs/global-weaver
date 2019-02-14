@@ -19,9 +19,8 @@ public class LocalSourceServiceImpl implements LocalSourceService{
     public SeerContext collectDataFromLocalSource(SeerContext seerContext) {
         SeerRequestContext req = seerContext.getRequest();
         String path = req.getPathToCompiledMicroservices();
-        //ToDo: dataModelService should have a SeerContext as an argument + return SeerContext
-        String s = dataModelService.deriveStructure(path);
-        return new SeerContext();
+        SeerContext entityModel = dataModelService.deriveStructure(path);
+
     }
 
 

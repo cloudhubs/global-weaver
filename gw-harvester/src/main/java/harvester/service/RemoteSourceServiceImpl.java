@@ -27,6 +27,4 @@ public class RemoteSourceServiceImpl extends RestService implements RemoteSource
 
     }
 
-
-
 }

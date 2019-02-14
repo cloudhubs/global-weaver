@@ -16,6 +16,7 @@ public class HarvesterController {
         return "OK - handshake";
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(path = "/analyze", method = RequestMethod.POST)
     public SeerContext analyzeMicroservices(@RequestBody SeerContext seerContext) {
         return harvesterService.collectContextData(seerContext);
