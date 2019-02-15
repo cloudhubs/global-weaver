@@ -40,11 +40,11 @@
             <version>0.1.0-RELEASE</version>
         </dependency>
 
-        <dependency>
-            <groupId>edu.baylor.ecs.seer</groupId>
-            <artifactId>local-weaver</artifactId>
-            <version>0.2.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>edu.baylor.ecs.seer</groupId>-->
+            <!--<artifactId>local-weaver</artifactId>-->
+            <!--<version>0.2.0</version>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>

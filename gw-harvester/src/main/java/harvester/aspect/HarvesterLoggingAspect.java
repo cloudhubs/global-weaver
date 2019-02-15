@@ -33,10 +33,10 @@ public class HarvesterLoggingAspect {
 //        return harvesterData;
 //    }
 
-    @After(value="harvester.aspect.CommonJoinPointConfig.harvesterControllerMethods()")
-    public void logHarvesterController(JoinPoint joinPoint){
-        logger = LoggerFactory.getLogger(HarvesterController.class);
-        logger.info("Welcome method");
-    }
+//    @After(value="harvester.aspect.CommonJoinPointConfig.harvesterControllerMethods()")
+//    public void logHarvesterController(JoinPoint joinPoint){
+//        logger = LoggerFactory.getLogger(HarvesterController.class);
+//        logger.info("Welcome method");
+//    }
 
 }

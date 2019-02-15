@@ -1,7 +1,7 @@
 package harvester.controller;
 
 import edu.baylor.ecs.seer.common.context.SeerContext;
-import harvester.service.HarvesterService;
+import harvester.service.LocalWeaverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 public class HarvesterController {
 
     @Autowired
-    private HarvesterService harvesterService;
+    private LocalWeaverService harvesterService;
 
     @RequestMapping(path = "/handshake", method = RequestMethod.GET)
     public String home() {
@@ -19,6 +19,6 @@ public class HarvesterController {
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/analyze", method = RequestMethod.POST)
     public SeerContext analyzeMicroservices(@RequestBody SeerContext seerContext) {
-        return harvesterService.collectContextData(seerContext);
+        return harvesterService.getSeerContext(seerContext);
     }
 }

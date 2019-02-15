@@ -15,32 +15,44 @@ import org.springframework.integration.annotation.IntegrationComponentScan;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 
-@SpringBootApplication(scanBasePackages = {"edu.baylor.ecs.seer.lweaver", "harvester"})
+@SpringBootApplication(scanBasePackages = {"harvester"})
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAsync
 @IntegrationComponentScan
-public class HarvesterApplication implements CommandLineRunner {
-
-    @Autowired
-    private YAMLConfig yamlConfig;
-
-    @Autowired
-    private Spring spring;
-
-    private Logger log = LoggerFactory.getLogger(HarvesterApplication.class);
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(HarvesterApplication.class, args);
-    }
+public class HarvesterApplication {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
         return builder.build();
     }
 
-    @Override
-    public void run(String... strings) throws Exception {
-        log.info("Environment: " + yamlConfig.getEnvironment());
-        log.info("Reachable server ports: " + yamlConfig.getServers());
+    public static void main(String[] args) {
+        SpringApplication.run(HarvesterApplication.class, args);
     }
+
 }
+//public class HarvesterApplication implements CommandLineRunner {
+//
+//    @Autowired
+//    private YAMLConfig yamlConfig;
+//
+//    @Autowired
+//    private Spring spring;
+//
+//    private Logger log = LoggerFactory.getLogger(HarvesterApplication.class);
+//
+//    public static void main(String[] args) throws Exception {
+//        SpringApplication.run(HarvesterApplication.class, args);
+//    }
+//
+//    @Bean
+//    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+//        return builder.build();
+//    }
+//
+//    @Override
+//    public void run(String... strings) throws Exception {
+//        log.info("Environment: " + yamlConfig.getEnvironment());
+//        log.info("Reachable server ports: " + yamlConfig.getServers());
+//    }
+//}
