@@ -145,30 +145,76 @@ public class EntityModelService {
 
         List<String> names = new ArrayList<>();
         List<String> types = new ArrayList<>();
+        List<String> edgeDescriptions = new ArrayList<>();
 
         for (SeerField seerField: entityModel.getFields()
         ) {
+            if (seerField.getSeerEntityRelation() != null){
+                if (!types.contains(seerField.getType())){
+                    names.add(entityModel.getClassNameShort());
+                    types.add(seerField.getType());
 
+                    switch (seerField.getSeerEntityRelation()){
+                        case MANYTOONE:
+                            edgeDescriptions.add(" \n" +
+                                    "        edge [\n" +
+                                    "                arrowhead = \"none\"\n" +
+                                    "                 headlabel = \"0..1\" " +
+                                    "                 taillabel = \"0..*\" " +
+                                    "        ]\n" +
+                                    " \n");
+                            break;
+                        case ONETOMANY:
+                            edgeDescriptions.add(" \n" +
+                                    "        edge [\n" +
+                                    "                arrowhead = \"none\"\n" +
+                                    "                 headlabel = \"0..*\" " +
+                                    "                 taillabel = \"0..1\" " +
+                                    "        ]\n" +
+                                    " \n");
+                            break;
+                        case MANYTOMANY:
+                            edgeDescriptions.add(" \n" +
+                                    "        edge [\n" +
+                                    "                arrowhead = \"none\"\n" +
+                                    "                 headlabel = \"0..*\" " +
+                                    "                 taillabel = \"0..*\" " +
+                                    "        ]\n" +
+                                    " \n");
+                            break;
+                    }
+
+
+                }
+            }
         }
 
         stringBuilder.append("\n");
 
-        for (SeerField seerField: entityModel.getFields()
-             ) {
-            if (seerField.getSeerEntityRelation() != null){
+//        for (SeerField seerField: entityModel.getFields()
+//             ) {
+//            if (seerField.getSeerEntityRelation() != null){
+//
+//                stringBuilder.append(" \n" +
+//                        "        edge [\n" +
+//                        "                arrowhead = \"none\"\n" +
+//                        "                 headlabel = \"0..*\" " +
+//                        "                 taillabel = \"0..*\" " +
+//                        "        ]\n" +
+//                        " \n");
+//
+//                stringBuilder.append("\n");
+//                stringBuilder.append("" + entityModel.getClassNameShort() + " -> " + seerField.getType());
+//                stringBuilder.append("\n");
+//            }
+//        }
 
-                stringBuilder.append(" \n" +
-                        "        edge [\n" +
-                        "                arrowhead = \"none\"\n" +
-                        "                 headlabel = \"0..*\" " +
-                        "                 taillabel = \"0..*\" " +
-                        "        ]\n" +
-                        " \n");
-
-                stringBuilder.append("\n");
-                stringBuilder.append("" + entityModel.getClassNameShort() + " -> " + seerField.getType());
-                stringBuilder.append("\n");
-            }
+        for (int i = 0; i < names.size(); i++) {
+            stringBuilder.append("\n");
+            stringBuilder.append(edgeDescriptions.get(i));
+            stringBuilder.append("\n");
+            stringBuilder.append(names.get(i) + " -> " + types.get(i));
+            stringBuilder.append("\n");
         }
 
         stringBuilder.append("\n");
