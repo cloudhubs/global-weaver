@@ -37,7 +37,7 @@ public class GeneratorController {
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/uml", method = RequestMethod.POST)
     public SeerContext generateUml(@RequestBody SeerContext seerContext) {
-        seerContext = umlGeneratorService.generateUML(seerContext);
+        seerContext = umlGeneratorService.generateAllUMLSources(seerContext);
         return seerContext;
     }
 
