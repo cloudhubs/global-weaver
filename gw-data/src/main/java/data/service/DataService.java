@@ -1,15 +1,29 @@
 package data.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.baylor.ecs.seer.common.context.SeerContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 
-public abstract class DataService {
+@Service
+public class DataService {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private BoundedContextService boundedContextService;
+
+    @Autowired
+    private ContextMapService contextMapService;
+
+    public SeerContext getContextSources(SeerContext seerContext){
+        seerContext = boundedContextService.getBoundedContextSources(seerContext);
+        return contextMapService.getContextMap(seerContext);
+    }
 
     //ToDo: Move ip, port and interface (dataModel) to config
     /**

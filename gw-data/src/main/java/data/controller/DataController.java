@@ -1,6 +1,6 @@
 package data.controller;
 
-import data.service.EntityModelService;
+import data.service.DataService;
 import data.service.InconsistencyService;
 import data.service.ValidationService;
 import edu.baylor.ecs.seer.common.context.SeerContext;
@@ -13,15 +13,15 @@ public class DataController {
 
     private InconsistencyService inconsistencyService;
     private ValidationService validationService;
-    private EntityModelService entityModelService;
+    private DataService dataService;
 
     @Autowired
     public DataController(InconsistencyService inconsistencyService,
                           ValidationService validationService,
-                          EntityModelService entityModelService) {
+                          DataService dataService) {
         this.inconsistencyService = inconsistencyService;
         this.validationService = validationService;
-        this.entityModelService = entityModelService;
+        this.dataService = dataService;
     }
 
 //    @CrossOrigin(origins = "*")
@@ -39,7 +39,7 @@ public class DataController {
     @CrossOrigin(origins = "*")
     @RequestMapping(path = "/entityModel", method = RequestMethod.POST)
     public SeerContext getEntityModel(@RequestBody SeerContext seerContext){
-        return entityModelService.buildUml(seerContext);
+        return dataService.getContextSources(seerContext);
     }
 
 }

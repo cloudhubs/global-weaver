@@ -10,12 +10,24 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Generates source code for entity model
+ */
 @Service
-public class EntityModelService {
+public class EntityModelSourceService {
 
     private StringBuilder stringBuilder;
 
-    public SeerContext buildUml(SeerContext seerContext){
+    /**
+     * Deprecated
+     * @param seerContext
+     * @return
+     */
+    public SeerContext buildAllUml(SeerContext seerContext){
+        //global UML
+        //-- run merging algorithm
+
+        // local UML
         for (SeerMsContext ms: seerContext.getMsContexts()
              ) {
             if (ms.getEntity().getEntities() != null && ms.getEntity().getEntities().size() > 0){
@@ -27,6 +39,13 @@ public class EntityModelService {
         }
 
         return seerContext;
+    }
+
+    public String generateUmlSource(List<EntityModel> entities) {
+        start();
+        body(entities);
+        end();
+        return stringBuilder.toString();
     }
 
 
@@ -219,6 +238,7 @@ public class EntityModelService {
 
         stringBuilder.append("\n");
     }
+
 
 
 }
