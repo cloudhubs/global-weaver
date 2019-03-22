@@ -20,7 +20,7 @@ public class UMLGeneratorService {
                 ms.getEntity().setBoundedContextResult(png);
             }
         }
-        String png = generateUMLSource("global", seerContext.getGlobal().getUmlDiagramSource(), seerContext.getRequest().getProductsDirectory());
+        String png = generateUMLSource("global", seerContext.getContextMap().getBoundedContextSource(), seerContext.getRequest().getProductsDirectory());
         seerContext.getGlobal().setUmlDiagramResult(png);
         return seerContext;
     }

@@ -22,6 +22,7 @@ public class DataService {
 
     public SeerContext getContextSources(SeerContext seerContext){
         seerContext = boundedContextService.getBoundedContextSources(seerContext);
+//        return seerContext;
         return contextMapService.getContextMap(seerContext);
     }
 
