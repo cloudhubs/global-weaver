@@ -27,7 +27,8 @@ public class RestService {
     }
 
     public SeerContext postContext(String ipInterface, SeerContext seerContext){
-        return restTemplate.postForObject(ipInterface, seerContext, SeerContext.class);
+        Object object = restTemplate.postForObject(ipInterface, seerContext, SeerContext.class);
+        return (SeerContext) object;
     }
 
 //    @Bean

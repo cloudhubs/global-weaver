@@ -1,14 +1,9 @@
 package harvester.service;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import edu.baylor.ecs.seer.common.context.SeerContext;
 import edu.baylor.ecs.seer.common.context.SeerMsContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 
 @Service

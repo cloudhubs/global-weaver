@@ -1,5 +1,6 @@
 package harvester.controller;
 
+import edu.baylor.ecs.seer.common.SampleObject;
 import edu.baylor.ecs.seer.common.context.SeerContext;
 import harvester.service.GlobalContextService;
 import harvester.service.HarvesterService;
@@ -19,8 +20,10 @@ public class HarvesterController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(path = "/analyze", method = RequestMethod.POST)
-    public SeerContext analyzeMicroservices(@RequestBody SeerContext seerContext) {
+    @RequestMapping(path = "/analyze", method = RequestMethod.POST, produces = "application/json; charset=UTF-8", consumes = {"text/plain", "application/json;charset=UTF-8"})
+    public SeerContext analyzeMicroservices(@RequestBody SampleObject sampleObject) {
+        SeerContext seerContext = new SeerContext();
+        seerContext.setRequest(sampleObject.getRequest());
         seerContext = harvesterService.harvestData(seerContext);
         return seerContext;
     }
