@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "0821eded-5da6-46f3-85f0-817a50d46d16",
+		"name": "CP copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Benchmark",
+			"item": [
+				{
+					"name": "CAD",
+					"item": [
+						{
+							"name": "handshake",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7010/cad/handshake",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7010",
+									"path": [
+										"cad",
+										"handshake"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e31d9055-24ed-45d4-a6ba-4adac7c975f9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "16354b12-9706-4741-b290-6fe05d5b047c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "GW",
+			"item": [
+				{
+					"name": "security",
+					"item": [
+						{
+							"name": "welcome",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}7003/welcome",
+									"host": [
+										"{{url}}7003"
+									],
+									"path": [
+										"welcome"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "security",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7003/security",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7003",
+									"path": [
+										"security"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "generator",
+					"item": [
+						{
+							"name": "graph",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7001/generator/graph",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7001",
+									"path": [
+										"generator",
+										"graph"
+									]
+								},
+								"description": "deprecated - not updated"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "harvester",
+					"item": [
+						{
+							"name": "handshake",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/handshake",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"handshake"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "security",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/security",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"security"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "data-model",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/dataModel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"dataModel"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "flow-structure",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/flowStructure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"flowStructure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "byteFlowStructure",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/byteFlowStructure",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"byteFlowStructure"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "scanDirectory",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7002/scanDirectory",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"scanDirectory"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get-context-local",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"request\":{\n\t\t\"pathToCompiledMicroservices\":\"/Users/svacina/git/advseproject/user-management\",\n\t\t\"organizationName\":\"advseproject\",\n\t\t\"organizationPath\":\"/edu/baylor/ecs/seer/\",\n\t\t\"localWeaverHttp\":\"http://localhost:8080\",\n\t\t\"gwEntityHttp\":\"http://localhost:7000/data/entityModel\",\n\t\t\"gwGeneratorHttp\":\"http://localhost:7001/generator/uml\",\n\t\t\"productsDirectory\":\"/Users/svacina/dev/cerny/gw-outputs/\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:7002/analyze",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7002",
+									"path": [
+										"analyze"
+									]
+								},
+								"description": "Gets context from local weaver locally based on body request"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "similarity",
+					"item": [
+						{
+							"name": "similarity-detection",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:7004/similarity-detection",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7004",
+									"path": [
+										"similarity-detection"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "local-weaver",
+					"item": [
+						{
+							"name": "lw-local-context",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"request\":{\n\t\t\"pathToCompiledMicroservices\":\"/Users/svacina/dev/cerny/cm5-source\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/seer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"seer"
+									]
+								},
+								"description": "Get context from locally stored modules in one particular folder"
+							},
+							"response": []
+						},
+						{
+							"name": "lw-local-context-um",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"request\":{\n\t\t\"pathToCompiledMicroservices\":\"/Users/svacina/git/advseproject/user-management\",\n\t\t\"organizationPath\":\"/edu/baylor/ecs/seer/usermanagement\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/seer",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"seer"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "entity model",
+					"item": [
+						{
+							"name": "entityModel",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n}"
+								},
+								"url": {
+									"raw": "http://localhost:7000/data/entityModel",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7000",
+									"path": [
+										"data",
+										"entityModel"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "http://localhost:7000/entityModel",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/entityModel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"entityModel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:7000/entityModel",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n}"
+				},
+				"url": {
+					"raw": "http://localhost:7000/entityModel",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"entityModel"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"request\":{\n\t\t\"pathToCompiledMicroservices\":\"/Users/svacina/git/advseproject/user-management\",\n\t\t\"organizationPath\":\"/edu/baylor/ecs/seer/usermanagement\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080"
+				}
+			},
+			"response": []
+		}
+	]
+}
