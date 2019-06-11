@@ -38,29 +38,7 @@ public class RestService {
     }
 
     public SeerContext postContext(String ipInterface, SeerContext seerContext){
-        String json = null;
-        try {
-            json = restTemplate.postForObject(ipInterface, seerContext, String.class);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        ObjectMapper objectMapper = new ObjectMapper();
-        SimpleModule simpleModule = new SimpleModule();
-        simpleModule.addKeyDeserializer(SeerFlowMethod.class, new KeyDeserializer() {
-            @Override
-            public Object deserializeKey(String key, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-                return null;
-            }
-        });
-        objectMapper.registerModule(simpleModule);
-
-        SeerContext context = null;
-        try {
-            context = objectMapper.readValue(json, SeerContext.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return context;
+        return restTemplate.postForObject(ipInterface, seerContext, SeerContext.class);
     }
 
 //    @Bean

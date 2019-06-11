@@ -73,11 +73,12 @@ public class UMLGeneratorService {
 //            e.printStackTrace();
 //        }
 
-
-        try {
-            proc.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (proc != null) {
+            try {
+                proc.waitFor();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         return png;
