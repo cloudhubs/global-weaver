@@ -129,6 +129,10 @@ public class ContextMapService {
     }
 
     private void DFSUtil(int i) {
+        if(this.tmpSeerEntityCluster.getEntityModels() == null){
+            this.tmpSeerEntityCluster.setEntityModels(new ArrayList<>());
+        }
+
         this.allEntities.get(i).setVisited(true);
         this.tmpSeerEntityCluster.getEntityModels().add(this.allEntities.get(i));
         for (EntityModel entityModel : allEntities.get(i).getAdjEntityModels()) {
