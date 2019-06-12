@@ -36,24 +36,34 @@ public class UMLGeneratorService {
         // Generate the absolute path including directory
         //String umlDiagramPath = seerContext.getGlobal().getUmlDiagramDirectory() + generatedName;
 
-        // Write output
-        PrintWriter writer = null;
+        // Make the directory if it doesn't exist
+        File dir = new File(directory);
+        dir.mkdirs();
+
+        File file = new File(dot);
         try {
-            writer = new PrintWriter(dot, "UTF-8");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+            PrintWriter pw = new PrintWriter(file, "UTF-8");
+            pw.println(source);
+            pw.close();
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        writer.println(source);
-        writer.close();
 
         // Generate png
+        boolean isWindows = System.getProperty("os.name")
+                .toLowerCase().startsWith("windows");
 
-        String command = "dot -T png -o " + png + " " + dot;
+        String command = "";
+        if(isWindows) {
+            command = "cmd.exe /c dot -T png -o " + png + " " + dot;
+        } else {
+            command = "dot -T png -o " + png + " " + dot;
+        }
+        
         Process proc = null;
         try {
-            proc = Runtime.getRuntime().exec(command);
+            Runtime runtime = Runtime.getRuntime();
+            proc = runtime.exec(command);
         } catch (IOException e) {
             e.printStackTrace();
         }

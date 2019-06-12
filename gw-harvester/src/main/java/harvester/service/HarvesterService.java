@@ -23,7 +23,13 @@ public class HarvesterService {
         seerContext = globalContextService.analyzeSeerContext(seerContext);
         seerContext = globalWeaverService.getEntityModelDescription(seerContext);
         seerContext = globalWeaverService.generateEntityModel(seerContext);
-        openUmlModel(seerContext);
+
+        boolean isWindows = System.getProperty("os.name")
+                .toLowerCase().startsWith("windows");
+        if(!isWindows) {
+            openUmlModel(seerContext);
+        }
+
         return seerContext;
     }
 
