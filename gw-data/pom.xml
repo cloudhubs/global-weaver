@@ -6,14 +6,14 @@
 
     <groupId>edu.baylor.ecs.seer</groupId>
     <artifactId>gw-data</artifactId>
-    <version>0.1.0</version>
+    <version>0.3.0</version>
 
     <name>gw-data</name>
 
     <parent>
         <groupId>edu.baylor.ecs.seer</groupId>
         <artifactId>global-weaver</artifactId>
-        <version>0.1.0</version>
+        <version>0.3.0</version>
         <relativePath>../</relativePath>
     </parent>
 

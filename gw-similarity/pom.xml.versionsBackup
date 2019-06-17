@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.baylor.ecs.seer</groupId>
-    <artifactId>gw-security</artifactId>
-    <version>0.3.0</version>
+    <artifactId>gw-similarity</artifactId>
+    <version>0.1.0</version>
 
-    <name>gw-security</name>
+    <name>gw-similarity</name>
 
     <parent>
         <groupId>edu.baylor.ecs.seer</groupId>
         <artifactId>global-weaver</artifactId>
-        <version>0.3.0</version>
+        <version>0.1.0</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -31,21 +31,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>2.9.6</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
-            <version>2.0.0.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <groupId>it.zielke</groupId>
+            <artifactId>moji</artifactId>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
             <groupId>edu.baylor.ecs.seer</groupId>

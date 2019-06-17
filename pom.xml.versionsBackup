@@ -4,7 +4,7 @@
 
 	<groupId>edu.baylor.ecs.seer</groupId>
 	<artifactId>global-weaver</artifactId>
-	<version>0.3.0</version>
+	<version>0.3.0-RELEASE</version>
 	<packaging>pom</packaging>
 	<name>gw-service-cluster</name>
 
