@@ -1,6 +1,7 @@
 package generator.controller;
 
 import edu.baylor.ecs.seer.common.context.SeerContext;
+import generator.service.FlowGeneratorService;
 import generator.service.GeneratorService;
 import generator.service.UMLGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class GeneratorController {
     @Autowired
     private UMLGeneratorService umlGeneratorService;
 
+    @Autowired
+    private FlowGeneratorService flowGeneratorService;
+
     @RequestMapping(value = "/graph")
     @GetMapping
     public List<String> getGraph() {
@@ -38,6 +42,13 @@ public class GeneratorController {
     @RequestMapping(path = "/uml", method = RequestMethod.POST)
     public SeerContext generateUml(@RequestBody SeerContext seerContext) {
         seerContext = umlGeneratorService.generateAllUMLSources(seerContext);
+        return seerContext;
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(path = "/flow", method = RequestMethod.POST)
+    public SeerContext generateFlow(@RequestBody SeerContext seerContext) {
+        seerContext = flowGeneratorService.generateAllFlowSources(seerContext);
         return seerContext;
     }
 

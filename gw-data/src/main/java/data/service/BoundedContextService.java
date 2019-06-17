@@ -11,13 +11,19 @@ public class BoundedContextService {
     @Autowired
     private EntityModelSourceService entityModelSourceService;
 
+    @Autowired
+    private BytecodeFlowSourceService bytecodeFlowSourceService;
+
     public SeerContext getBoundedContextSources(SeerContext seerContext){
 
-        for (SeerMsContext ms: seerContext.getMsContexts()
-        ) {
+        for (SeerMsContext ms: seerContext.getMsContexts()) {
             if (ms.getEntity().getEntities() != null && ms.getEntity().getEntities().size() > 0){
                 String umlSource = entityModelSourceService.generateUmlSource(ms.getEntity().getEntities());
                 ms.getEntity().setBoundedContextSource(umlSource);
+            }
+
+            if (ms.getFlow().getSeerFlowMethods() != null && ms.getFlow().getSeerFlowMethods().size() > 0){
+                bytecodeFlowSourceService.buildAllFlowSource(ms);
             }
         }
 

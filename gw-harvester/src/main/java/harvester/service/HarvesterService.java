@@ -23,6 +23,7 @@ public class HarvesterService {
         seerContext = globalContextService.analyzeSeerContext(seerContext);
         seerContext = globalWeaverService.getEntityModelDescription(seerContext);
         seerContext = globalWeaverService.generateEntityModel(seerContext);
+        seerContext = globalWeaverService.generateFlowModel(seerContext);
 
         boolean isWindows = System.getProperty("os.name")
                 .toLowerCase().startsWith("windows");

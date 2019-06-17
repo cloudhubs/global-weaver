@@ -23,5 +23,11 @@ public class GlobalWeaverService {
         return seerContext;
     }
 
+    public SeerContext generateFlowModel(SeerContext seerContext){
+        SeerRequestContext req = seerContext.getRequest();
+        seerContext = restService.postContext(req.getGwFlowHttp(), seerContext);
+        return seerContext;
+    }
+
 
 }
