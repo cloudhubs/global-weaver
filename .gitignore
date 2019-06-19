@@ -6,3 +6,7 @@ gw-generator/target
 gw-harvester/target
 gw-security/target
 gw-similarity/target
+META-INF
+.settings
+.project
+.classpath
