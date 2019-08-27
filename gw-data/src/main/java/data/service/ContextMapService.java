@@ -28,9 +28,10 @@ public class ContextMapService {
 
     // MAIN METHOD
     public SeerContext getContextMap(SeerContext seerContext){
+        this.allEntities = new ArrayList<>();
         seerContext = electClosestNeighbour(seerContext);
-        seerContext.setEntityClusters(clusterEntities(seerContext));
-        seerContext.setContextMap(mergeClusters(seerContext.getEntityClusters()));
+        List<SeerEntityCluster> clusters = clusterEntities(seerContext);
+        seerContext.setContextMap(mergeClusters(clusters));
         String umlSource = entityModelSourceService.generateUmlSource(seerContext.getContextMap().getEntities());
         seerContext.getContextMap().setBoundedContextSource(umlSource);
 //        seerContext.getContextMap().setEntities(null);

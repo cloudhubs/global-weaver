@@ -12,7 +12,7 @@ public class FlowGeneratorService {
 
     public SeerContext generateAllFlowSources(SeerContext seerContext){
         for (SeerMsContext ms: seerContext.getMsContexts()){
-            if (!ms.getFlow().getSeerFlowMethods().isEmpty()){
+            if (ms.getFlow() != null && !ms.getFlow().getSeerFlowMethods().isEmpty()){
                 for(SeerFlowMethodRepresentation mr : ms.getFlow().getSeerFlowMethods()){
 
                     if(mr.getSource() == null){
@@ -41,7 +41,8 @@ public class FlowGeneratorService {
     private String generateFlowSource(String fileName, String source, String directory){
 
         String dot = directory + fileName + ".dot";
-        String png = directory + fileName + ".png";
+//        String png = directory + fileName + ".png";
+        String png = directory + fileName + ".svg";
 
         // Make the directory if it doesn't exist
         File dir = new File(directory);
@@ -64,7 +65,9 @@ public class FlowGeneratorService {
         if(isWindows) {
             command = "cmd.exe /c dot -T png -o " + png + " " + dot;
         } else {
-            command = "dot -T png -o " + png + " " + dot;
+//            command = "dot -T png -o " + png + " " + dot;
+            command = "dot -Tsvg " + dot + " -o " + png;
+
         }
 
         Process proc = null;

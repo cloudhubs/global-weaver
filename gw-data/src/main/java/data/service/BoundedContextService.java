@@ -22,7 +22,7 @@ public class BoundedContextService {
                 ms.getEntity().setBoundedContextSource(umlSource);
             }
 
-            if (ms.getFlow().getSeerFlowMethods() != null && ms.getFlow().getSeerFlowMethods().size() > 0){
+            if (ms.getFlow() != null &&ms.getFlow().getSeerFlowMethods() != null && ms.getFlow().getSeerFlowMethods().size() > 0){
                 bytecodeFlowSourceService.buildAllFlowSource(ms);
             }
         }

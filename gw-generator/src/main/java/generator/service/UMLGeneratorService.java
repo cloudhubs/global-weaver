@@ -32,7 +32,7 @@ public class UMLGeneratorService {
         //String randomAppendix = randomService.randomString();
         // Generate name of the UML .dot file
         String dot = directory + fileName + ".dot";
-        String png = directory + fileName + ".png";
+        String png = directory + fileName + ".svg";
         // Generate the absolute path including directory
         //String umlDiagramPath = seerContext.getGlobal().getUmlDiagramDirectory() + generatedName;
 
@@ -57,7 +57,9 @@ public class UMLGeneratorService {
         if(isWindows) {
             command = "cmd.exe /c dot -T png -o " + png + " " + dot;
         } else {
-            command = "dot -T png -o " + png + " " + dot;
+//            command = "dot -T png -o " + png + " " + dot;
+            command = "dot -Tsvg " + dot + " -o " + png;
+
         }
         
         Process proc = null;

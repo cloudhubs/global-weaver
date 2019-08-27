@@ -1,8 +1,6 @@
 package security.service;
 
-import edu.baylor.ecs.seer.common.domain.LocalWeaverResult;
-import edu.baylor.ecs.seer.common.domain.Node;
-import edu.baylor.ecs.seer.common.domain.SecurityData;
+import edu.baylor.ecs.seer.common.SecurityData;
 
 import java.util.List;
 import java.util.Set;

@@ -4,7 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.baylor.ecs.seer</groupId>
     <artifactId>gw-similarity</artifactId>
     <version>0.3.0</version>
 
@@ -19,28 +18,18 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
+        <java.version>12</java.version>
+        <start-class>similarity.SimilarityDetectionApplication</start-class>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>it.zielke</groupId>
             <artifactId>moji</artifactId>
             <version>1.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>edu.baylor.ecs.seer</groupId>
-            <artifactId>seer-common</artifactId>
-            <version>0.1.0-RELEASE</version>
-        </dependency>
+
     </dependencies>
 
     <build>
