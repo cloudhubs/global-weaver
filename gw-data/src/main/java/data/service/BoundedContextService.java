@@ -23,7 +23,7 @@ public class BoundedContextService {
             }
 
             if (ms.getFlow() != null &&ms.getFlow().getSeerFlowMethods() != null && ms.getFlow().getSeerFlowMethods().size() > 0){
-                bytecodeFlowSourceService.buildAllFlowSource(ms);
+                //bytecodeFlowSourceService.buildAllFlowSource(ms);
             }
         }
 

@@ -1,0 +1,778 @@
+commit 8120ff109ab5ed7d80a241578f987d4e89ddff65
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Tue Aug 27 15:52:38 2019 -0500
+
+    compile command
+
+commit dd5c81e5feeaceaad60595b2b980b9e45f82ce2e
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Mon Jun 17 10:05:33 2019 +0200
+
+    Updates to version 0.3.0
+
+commit a7a8cd86f981f64c2a5a1fa40b3ae83f69622260
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Mon Jun 17 09:18:28 2019 +0200
+
+    Adds generating flow source and result images
+
+commit a213ca391eda4e7b5a4c807bddf59bb2d94530a9
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Jun 12 09:14:55 2019 +0200
+
+    SEER-59: Adds a ResponseService to build the SeerResponseContext for the response
+
+commit 4f3790302b345ed45e0b989d7c9c16e80af86878
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Jun 12 09:04:23 2019 +0200
+
+    Updates UML for Windows operations
+
+commit 4696ba17c14056cd8a94ae7ea1af8a8900da2472
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Tue Jun 11 14:05:25 2019 +0200
+
+    Moves back to SeerContext among REST API
+
+commit 3274a2abd9bb3469188648e5392870bf11ee4f86
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Tue Jun 11 10:54:35 2019 +0200
+
+    Updates serialization of SeerContext
+
+commit 29a348c47220390a8e9f61e60b0e3dd4e0a54d5f
+Merge: 1f224aa bd9c656
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 11:38:09 2019 +0200
+
+    Merge branch 'entity-data' of bitbucket.org:seer-lab/global-weaver into entity-data
+
+commit 1f224aaff09b3c7aee21aa882d365f90eae142a6
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 11:37:51 2019 +0200
+
+    20190610 postman collection
+
+commit bd9c6561bfb63a0c676f523733ee6f5069e4cd0c
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Mon Jun 10 10:37:13 2019 +0200
+
+    Documentation for June 10th 2019
+
+commit b713e537fafa4ecb5c38232dc800a237da27a8ab
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 10:25:50 2019 +0200
+
+    deployment notes
+
+commit 0b3914c6e3a4f73c9fe327032420431eeb8bf85b
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 09:35:47 2019 +0200
+
+    seer dev
+
+commit cb452915190a605d56b5b2f7ce4547f534b13179
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 09:33:50 2019 +0200
+
+    running the harvester
+
+commit be4d41e53f8259d595d1a18016b50970678d0c53
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 09:28:03 2019 +0200
+
+    deployment guide seed
+
+commit 5e1cca5939018d931ee263fb4eb6bf3481f75101
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jun 10 09:25:59 2019 +0200
+
+    harvester api calls fixes
+
+commit 433579cc4ac8bd6d4cd79b65acdfe9d4c80ffb8b
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Fri Mar 22 05:24:52 2019 -0500
+
+    context map service
+
+commit 1deb6534d9a80f2a1c018d2f54aedfc374cbc617
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Sun Mar 17 23:17:24 2019 -0500
+
+    merging entities algorithms
+
+commit 579e499339116e44d708ba94ecacaf6bb072715c
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Thu Feb 28 23:46:40 2019 -0600
+
+    generating edges by cardinality
+
+commit 3e675db71518638f7514923f399f859ccde5448e
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Thu Feb 28 23:25:59 2019 -0600
+
+    generating fields in graph
+
+commit f3cc3006c14c456cfb613348e2ec4b5ef0b38078
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Thu Feb 28 21:42:04 2019 -0600
+
+    gw generator: generating dot and png files
+
+commit 2794da0b4fa6a3d7515fe66fef3189e43ec7d7bc
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Thu Feb 28 21:41:28 2019 -0600
+
+    generating files with content
+
+commit decf229a3134d8c5bc01370baf3ee34ca706d719
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Thu Feb 28 21:40:49 2019 -0600
+
+    generating sample graph
+
+commit 9b627f7581c451b09d7f4739a7ee0a5ae6621f76
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Feb 20 20:48:03 2019 -0600
+
+    building global context
+
+commit d8e0abc42dcb7798617db36456d1e4668ea99574
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Fri Feb 15 17:37:19 2019 -0600
+
+    local service weaver impl
+
+commit ebe310f5f579cfe08e59d530544823d3715a2820
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Feb 13 18:22:27 2019 -0600
+
+    harvester as router client-modules
+
+commit 89014d46b95201fec3bc324f76398311cb9f69b2
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Feb 6 13:37:16 2019 -0600
+
+    implementing seer context into module
+
+commit beced3962d731dfb1c84f3540730a31267418bc3
+Merge: 5d19e2c 2d326e6
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Jan 30 14:08:58 2019 -0600
+
+    Merge branch 'master' of bitbucket.org:seer-lab/global-weaver
+
+commit 5d19e2c4c4dc84e95fc0e1a78bb215b937e10242
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Jan 30 14:08:52 2019 -0600
+
+    startup info
+
+commit 2d326e6155af3894981eb1099ae2a92c3fb4bac3
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Wed Jan 30 14:06:06 2019 -0600
+
+    Updated postman, and a fix to a minor mistake in HarvesterController
+
+commit 5d0e7a68b36a4949c788b5d97625889951b852da
+Merge: 13e2cb2 029c40b
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jan 28 17:29:40 2019 -0600
+
+    Merge branch 'master' of bitbucket.org:seer-lab/global-weaver
+
+commit 13e2cb27ad7f1cf469022589ce1f6cebdd64e765
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jan 28 17:29:33 2019 -0600
+
+    gw sec git ignore
+
+commit 029c40be9122050e1fadface2bd5cf78f5e2d0db
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Mon Jan 28 17:08:35 2019 -0600
+
+    Updated postman test
+
+commit f6c41b55bdf7ae886d9df6cb048a91b9d0a1a189
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Mon Jan 28 17:05:01 2019 -0600
+
+    Add local-weaver to harvester and begin adding calls to its API
+
+commit 59363553fe256482aec1729145606a438401f1c8
+Merge: 4e7a7bd f7ff698
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Mon Jan 28 23:03:55 2019 +0000
+
+    Merged in add-seer-common (pull request #16)
+    
+    Add seer common
+
+commit 4e7a7bdee34e256586332da925bd6732b6528ee9
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Jan 28 17:01:51 2019 -0600
+
+    postman collection
+
+commit f7ff69819067cc66f49c3cc017b5aeae4a01a1de
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Fri Jan 25 17:12:44 2019 -0600
+
+    Finished all seer-common incorporation. All domain packages have been removed from the main project.
+
+commit 363c4cec2c5fc9021923579658f90c4bbbea8c29
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Fri Jan 25 16:50:19 2019 -0600
+
+    Added seer-common, removed most uses of domain
+
+commit f134e8ae69393023694e38155c877646e31d6943
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Tue Dec 11 19:08:46 2018 -0600
+
+    inconsistency use case
+
+commit 1a2e2ee967d07c79bbbe79b82c9f3800d8cf9aa0
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Fri Nov 16 11:07:55 2018 -0600
+
+    todos
+
+commit 97976041410a847669b594958c478c965d9be08a
+Merge: 6f4b4f9 839b6d8
+Author: Jan Svačina <jan@svacina.net>
+Date:   Thu Nov 15 02:41:56 2018 +0000
+
+    Merged in gw-data-2 (pull request #15)
+    
+    port config
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 839b6d8ae9d4db53aeec3e90e36ee4eec7f14c63
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 14 20:41:31 2018 -0600
+
+    port config
+
+commit 6f4b4f9f51499c36402001f2f49f6e9dcf422955
+Merge: b04b76e 182ed72
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Thu Nov 15 02:40:37 2018 +0000
+
+    Merged in security/dev (pull request #14)
+    
+    Fixed ports
+
+commit 182ed728ad11ec0d0a12892ebecba2b4b2434f98
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 14 20:39:48 2018 -0600
+
+    Fixed ports
+
+commit b04b76ece8fa9cd0edcae731c015f6c10ca59cde
+Merge: 1bc84e9 5ed1d7b
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Thu Nov 15 02:36:15 2018 +0000
+
+    Merged in security/dev (pull request #13)
+    
+    Security/dev
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 5ed1d7b112989d1a94dc9acc2d06d55574d268f0
+Merge: 0dd79ed 1bc84e9
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 14 20:35:19 2018 -0600
+
+    Merge branch 'master' into security/dev
+
+commit 0dd79edaa8eefbf76dbab462f8107d8341c700d3
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 14 20:35:02 2018 -0600
+
+    A lot of debugging on some issues with multi service support
+
+commit 1bc84e944fefbdde60a17bb45dbf3e3fdf30860d
+Merge: 3d72706 63c54f7
+Author: Andrew Walker <andrew_walker2@baylor.edu>
+Date:   Thu Nov 15 01:35:57 2018 +0000
+
+    Merged in gw-data-2 (pull request #12)
+    
+    Gw data 2
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 63c54f7f0bc6087d64eb2df6bc043a301fa954ed
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Nov 14 19:33:54 2018 -0600
+
+    Sets up logging aspects for gw-data module and standardizes ports
+
+commit ede6cf2120091425353a6e9b7a62a686bac800fe
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 7 19:31:18 2018 -0600
+
+    In progress of commenting and refactoring. Currently does not compile.
+
+commit 4564529f492857d9a3bcf6b5684fee1e2a0681d3
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Nov 7 19:24:42 2018 -0600
+
+    Breaks apart the services more and adds additional logging
+
+commit 3bae13dc1bf538581345b493f5f0fe6d1f198c86
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Nov 7 18:12:46 2018 -0600
+
+    Adds logging around every method call
+
+commit 4df0d6fce6b85e5879c8d050659700b95a0dfaf8
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 7 17:44:56 2018 -0600
+
+    data aspects working
+
+commit b22959d5a20ac58dcca45e00467ec078966ed5c8
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Nov 7 17:25:10 2018 -0600
+
+    WIP - AOP Logging
+
+commit 300421155d06d305518cddbccc42abbdfe4be0bd
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 7 16:54:21 2018 -0600
+
+    Basic logging for module processing implemented -- currently testing
+
+commit e929221a37bab0d0f3ced6b55e29fd42979baed2
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 7 16:37:46 2018 -0600
+
+    Basic exception aspect up, working on refactoring SecurityServiceImpl
+
+commit befe48d6b7904dced6531b85f4c5bd2a4cf94c35
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Wed Nov 7 16:02:36 2018 -0600
+
+    Breaks api into two different endpoints and adds comments
+
+commit 3d727065ebffe986e461ff42b97d2c0d0126e3d3
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 7 15:57:30 2018 -0600
+
+    todos comments
+
+commit fcb60fae956823da3950a32efe33d14c7fec2ff4
+Merge: 5bfefae 3b33643
+Author: Jan Svačina <jan@svacina.net>
+Date:   Wed Nov 7 21:14:19 2018 +0000
+
+    Merged in similarity01 (pull request #11)
+    
+    Similarity01
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 3b3364391b0e1ee5e4e7987ecbd0682f16416dfd
+Merge: cbb8aca c3d0f73
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 7 15:13:53 2018 -0600
+
+    merging security
+
+commit 5bfefae5eb0140df68085c257b7ffb9fa85d5ae7
+Merge: 6de7e97 c3d0f73
+Author: Jan Svačina <jan@svacina.net>
+Date:   Wed Nov 7 21:06:18 2018 +0000
+
+    Merged in security/dev (pull request #10)
+    
+    Started work fixing harvester to handle ResultType
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit cbb8aca64eec60a40f8ea6d9dae8a5c4c376718c
+Merge: 1d922c3 f2bbf7f
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 7 15:04:46 2018 -0600
+
+    similarity
+
+commit 1d922c3e6e7abd09a7969edb63fcf1b24db95674
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 7 15:00:17 2018 -0600
+
+    new output
+
+commit 7ad78ab4ea3e50a003761044ed937c83e618b506
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Nov 7 13:04:01 2018 -0600
+
+    improving similarity for sample resutls
+
+commit c3d0f737bb2f2cad6347eb0ec4c4ba42bad085fb
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Nov 7 02:28:12 2018 -0600
+
+    Started work fixing harvester to handle ResultType
+
+commit 80338efc113af80e22c5794b16c086cc5ea8cc0c
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Tue Nov 6 14:51:50 2018 -0600
+
+    sample outputs
+
+commit 124f0c20085fc94e725c965e29e439f7e039b231
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 20:57:34 2018 -0600
+
+    harvester logging
+
+commit 497f4a8ef43d729eebf50e50b96721069e201337
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 20:51:19 2018 -0600
+
+    methods and services for moss communication
+
+commit 1d7db6aca1992ba878b450b4300ac60677a51efa
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 20:43:06 2018 -0600
+
+    security methods
+
+commit 4367b0fe0ac0fd83bd584108c7185b82c85a7305
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 18:27:42 2018 -0600
+
+    writing to output dir
+
+commit f2bbf7f25508059e4458a00c369574fa138f59d2
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Tue Nov 6 15:23:58 2018 -0600
+
+    similarities calling harvester
+
+commit 6de7e977d3e6ee09859fe30da4dabadb057c5c43
+Merge: 859131f 9797fb8
+Author: Jan Svačina <jan@svacina.net>
+Date:   Tue Nov 6 21:23:23 2018 +0000
+
+    Merged in security/dev (pull request #9)
+    
+    Working with configs, also added user input definition
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 745dab62eb2391a3c9d147423707d9b6b750dd59
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Tue Nov 6 14:51:50 2018 -0600
+
+    sample outputs
+
+commit b6ae75e635c46ce65ceb8bccd4e4379be993bcdb
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 20:57:34 2018 -0600
+
+    harvester logging
+
+commit 5f2ac39f1c43c4cc7588706efca3ab0f7aa98547
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 20:51:19 2018 -0600
+
+    methods and services for moss communication
+
+commit c9bef659c810f4624bfaf657a4c712bb8915f45e
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 20:43:06 2018 -0600
+
+    security methods
+
+commit 9797fb841a5a2b7a5e136b931e16515098c3b065
+Merge: 81664e0 859131f
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 19:08:02 2018 -0600
+
+    Merge branch 'master' into security/dev
+
+commit 81664e03e1ede3fe4b05874ba0ad11fe99679608
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 19:07:16 2018 -0600
+
+    Working with configs, also added user input definition
+
+commit 5a3c4e7abc568509a84c9196dc9e04a47aaa4d77
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 18:27:42 2018 -0600
+
+    writing to output dir
+
+commit 859131f1f59aff5e61f775cf2dd4835481062ceb
+Merge: b382fc4 97a8d38
+Author: Andrew Walker <andrew_walker2@baylor.edu>
+Date:   Tue Nov 6 00:24:57 2018 +0000
+
+    Merged in gw-harvest-1 (pull request #8)
+    
+    Fixes the list of HarvesterData
+
+commit 97a8d388a863b8cf11938814a166d3877bf7cd3a
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Mon Nov 5 18:20:28 2018 -0600
+
+    Fixes the list of HarvesterData
+
+commit b382fc4fce2367f254426090efdb86391c8c499d
+Merge: a537955 5c083b6
+Author: Jan Svačina <jan@svacina.net>
+Date:   Tue Nov 6 00:04:21 2018 +0000
+
+    Merged in harvester01 (pull request #7)
+    
+    similarity service
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 5c083b6b659e1b0ab3f557e2274798ac9851a3dd
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 18:03:27 2018 -0600
+
+    similarity service
+
+commit a537955a42e379c0e1d5b8bc5ad12b4c86d13b49
+Merge: 51c5a5d 1631433
+Author: John Diehl <jr_diehl@baylor.edu>
+Date:   Tue Nov 6 00:01:28 2018 +0000
+
+    Merged in security/dev (pull request #6)
+    
+    Security/dev
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit 16314338887d9f80881ebb9b87b89bcda7fef7ba
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 17:57:47 2018 -0600
+
+    Switched to exchange resttemplate model
+
+commit a0cbf74b7edc92ebc29b85bbcc246825154cb729
+Merge: b3879f7 51c5a5d
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 17:29:12 2018 -0600
+
+    Merge branch 'master' into security/dev
+
+commit 51c5a5d4055f249b8013b5d15c92cf4d4364e20a
+Merge: c54fddb fa539f6
+Author: Jan Svačina <jan@svacina.net>
+Date:   Mon Nov 5 23:28:51 2018 +0000
+
+    Merged in harvester01 (pull request #5)
+    
+    Harvester01
+    
+    Approved-by: John Diehl <jr_diehl@baylor.edu>
+
+commit c54fddbf6b4f76c8a841c4222f56048a6c13c366
+Merge: 8ccf23f f2b93a4
+Author: Andrew Walker <andrew_walker2@baylor.edu>
+Date:   Mon Nov 5 23:28:12 2018 +0000
+
+    Merged in gw-data-1 (pull request #4)
+    
+    Adds finding entity model inconsistencies
+    
+    Approved-by: Jan Svačina <jan@svacina.net>
+
+commit b3879f76627a0b09486dbbd0fe88f36c84c317f8
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 17:27:52 2018 -0600
+
+    Working on resolving issues
+
+commit fa539f6840b293808edf7069d65e16509ca6af0d
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 17:27:44 2018 -0600
+
+    modifying harvester data object - hash code
+
+commit f2b93a49ddcdec98ccabc3564b78b03ce4bca580
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Mon Nov 5 17:25:45 2018 -0600
+
+    Adds finding entity model inconsistencies
+
+commit 3f2c2fbe7d58b61ade93f52a5005617d562356f8
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 17:05:49 2018 -0600
+
+    renaming endpoints
+
+commit 00b106a8fd5e664fe47702ce0f50ba36b70f87de
+Merge: a34af8b 8ccf23f
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 16:36:40 2018 -0600
+
+    Merge branch 'master' into security/dev
+
+commit a34af8b81deede84e0c46d29f472e17a06b38496
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 16:36:14 2018 -0600
+
+    Some modes to RoleNode, and a new test case
+
+commit 8ccf23f770e2664bd575b79b625112b3d11d997b
+Merge: dfaee35 6150ae3
+Author: Jan Svačina <jan@svacina.net>
+Date:   Mon Nov 5 22:29:30 2018 +0000
+
+    Merged in harvester01 (pull request #3)
+    
+    Harvester01
+
+commit 6150ae3c397024666cbf8314e2f796e16d4646c7
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 16:28:34 2018 -0600
+
+    iterative module harvesting
+
+commit 87598c0a084d39124b1090ced53b53d614644800
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Nov 5 15:57:17 2018 -0600
+
+    sample config manegement
+
+commit e48bc51cfa6fe4c9794b8a7baa92493bb0d9c143
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Mon Nov 5 14:10:54 2018 -0600
+
+    Implemented roleTree and a basic test of its functionality in the security service. Service currently uses fixed input
+
+commit c0bd331b9d884bbc1078fa231b4cfe135ba4588b
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 21:16:49 2018 -0500
+
+    todo comments
+
+commit f6cd699c33ca26f98678cb7e58eab9a07c555ec1
+Merge: 9412dad dfaee35
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Oct 31 18:52:04 2018 -0500
+
+    Merge branch 'master' into security/dev
+
+commit 9412dadf906da5ea710ff717b5cf1ad86c408220
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Oct 31 18:51:24 2018 -0500
+
+    Working on creating RoleNode tree hierarchy
+
+commit dfaee356dc3552474155c6535e5f0834d1b73e9f
+Merge: 587214f 243cec3
+Author: Jan Svačina <jan@svacina.net>
+Date:   Wed Oct 31 23:50:58 2018 +0000
+
+    Merged in harvester01 (pull request #2)
+    
+    modifying rest controller security
+    
+    Approved-by: John Diehl
+
+commit 243cec35bbf90c8a06d6986792d68f6bb59370a4
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 18:49:39 2018 -0500
+
+    modifying rest controller security
+
+commit 587214fed8a6f6658ebf7ad95d0069cc842ef794
+Merge: 3f39b5c a4e1510
+Author: Jan Svačina <jan@svacina.net>
+Date:   Wed Oct 31 23:45:58 2018 +0000
+
+    Merged in harvester01 (pull request #1)
+    
+    implementing proof of concept harvester for security
+    
+    Approved-by: John Diehl
+
+commit a4e1510e6d79521f3e9127bdfdb48a633b83d87c
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 18:44:53 2018 -0500
+
+    changing security api
+
+commit a9cfc90e927067ab0d4db1746f31275671db6009
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 18:31:19 2018 -0500
+
+    implementing proof of concept harvester for security
+
+commit bdcaeb496480118e0208827d274d2febd039b5f5
+Merge: 14bb03e 3f39b5c
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Oct 31 17:41:18 2018 -0500
+
+    Merge branch 'master' into security/dev
+
+commit 14bb03ec694b98895a594730794ee02a6a38eb64
+Author: John Diehl <jrd1250@gmail.com>
+Date:   Wed Oct 31 17:40:53 2018 -0500
+
+    Some initial testing work
+
+commit 3f39b5c2d122d1c157f96dd65d39b73382e2fd8f
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 17:39:02 2018 -0500
+
+    harvester domain objects
+
+commit c1757e245d3b1b452737667aba5c41b2d7233592
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 16:27:32 2018 -0500
+
+    gitignore
+
+commit a9b8c15719b7d1f0508e595aad5f8ff7e281b675
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 16:25:59 2018 -0500
+
+    deleting targets
+
+commit 46d2da81191c7fa4400d9b6d416b6c5aeda756e9
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 16:24:51 2018 -0500
+
+    new architecture
+
+commit 561cf9561d98191ab310b46153ce0b1b50c77c53
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 15:51:03 2018 -0500
+
+    deleting idea files
+
+commit 49afda07a93b910dcfa51e237a31ad197e6b407d
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Wed Oct 31 15:39:28 2018 -0500
+
+    updating to msa architecture
+
+commit 08e2fba9592236766e8525a84831f1f37e5244b7
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Oct 29 18:28:47 2018 -0500
+
+    more services
+
+commit a2979bddbd719e7f958be9349fb34c3a35f0b2be
+Author: Jan Svacina <jan_svacina2@baylor.edu>
+Date:   Mon Oct 29 15:50:50 2018 -0500
+
+    similarity detection
+
+commit 6ee784d7df1a01e6a17d0087000fcefeb3433896
+Author: Andrew Walker <Andrew_Walker2@baylor.edu>
+Date:   Mon Oct 8 19:40:37 2018 -0500
+
+    Initializes the repo with the other modules
