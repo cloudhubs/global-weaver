@@ -17,7 +17,7 @@ public class ResponseService {
     public SeerContext buildResponse(SeerContext context){
         SeerResponseContext responseContext = new SeerResponseContext();
         responseContext.setModulesScanned(context.getMsContexts().size());
-        responseContext.setRequestCompleted(new Timestamp(System.currentTimeMillis()));
+//        responseContext.setRequestCompleted(new Timestamp(System.currentTimeMillis()));
         List<String> msNames = new ArrayList<>();
         for(SeerMsContext msContext : context.getMsContexts()){
             msNames.add(msContext.getModuleName());
